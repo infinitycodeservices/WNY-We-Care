@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5sp"
+        android:layout_marginRight="5sp"
+        android:layout_marginTop="5sp"
+        android:background="@color/grey"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:padding="5sp" >
+
+        <ImageView
+            android:id="@+id/logo_about"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/icslogo" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_content_about"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5sp"
+        android:layout_marginRight="5sp"
+        android:layout_marginTop="5sp"
+        android:background="@color/grey"
+        android:gravity="center_horizontal"
+        android:padding="5sp"
+        android:text="@string/info_about_us"
+        android:textColor="@color/black"
+        android:textSize="15sp" />
+
+   
+    <!-- Contact Us -->
+    
+     <RelativeLayout
+        android:id="@+id/contact"
+        android:clickable="true"
+        android:focusable="false"
+        android:layout_width="match_parent"
+        android:layout_height="50sp"
+        android:background="@drawable/btn_bg" >
+
+        <ImageView
+            android:id="@+id/contact_icon"
+            android:clickable="true"
+            android:layout_width="40sp"
+            android:layout_height="40sp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5sp"
+            android:scaleType="fitXY"
+            android:src="@drawable/icon_email" />
+
+        <TextView
+            android:id="@+id/contact_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/contact_icon"
+            android:layout_marginLeft="5sp"
+            android:layout_marginRight="5sp"
+            android:layout_toLeftOf="@+id/img_indicator"
+            android:layout_toRightOf="@+id/contact_icon"
+            android:singleLine="true"
+            android:text="@string/title_contact_us"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/contact_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/contact_name"
+            android:layout_alignRight="@+id/contact_name"
+            android:layout_below="@+id/contact_name"
+            android:singleLine="true"
+            android:text="@string/info_contact_us"
+            android:textColor="@color/black"
+            android:textSize="13sp" />
+
+        <ImageView
+            android:id="@+id/img_indicator"
+            android:clickable="true"
+            android:focusable="false"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5sp"
+            android:src="@drawable/ic_action_next_item" />
+
+        <View
+            android:id="@+id/devider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/grey" />
+    </RelativeLayout>
+    
+     
+      <!-- Facebook -->
+
+     <RelativeLayout
+         android:layout_width="match_parent"
+         android:layout_height="50sp"
+         android:clickable="true" 
+         android:background="@drawable/btn_bg" >
+
+         <ImageView
+             android:id="@+id/facebook_icon"
+             android:layout_width="40sp"
+             android:layout_height="40sp"
+             android:layout_centerVertical="true"
+             android:layout_marginLeft="5sp"
+             android:scaleType="fitXY"
+             android:src="@drawable/icon_facebook" />
+
+         <TextView
+             android:id="@+id/facebook_name"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_alignTop="@+id/facebook_icon"
+             android:layout_marginLeft="5sp"
+             android:layout_marginRight="5sp"
+             android:layout_toLeftOf="@+id/facebook_icon"
+             android:layout_toRightOf="@+id/facebook_icon"
+             android:singleLine="true"
+             android:text="@string/title_facebook"
+             android:textColor="@color/black"
+             android:textSize="15sp"
+             android:textStyle="bold" />
+
+         <TextView
+             android:id="@+id/facebook_content1"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_alignLeft="@+id/facebook_name"
+             android:layout_alignRight="@+id/facebook_name"
+             android:layout_below="@+id/facebook_name"
+             android:singleLine="true"
+             android:text="@string/info_facebook"
+             android:textColor="@color/black"
+             android:textSize="13sp" />
+
+         <ImageView
+             android:id="@+id/img_indicator1"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_alignParentRight="true"
+             android:layout_centerVertical="true"
+             android:layout_marginRight="5sp"
+             android:src="@drawable/ic_action_next_item" />
+
+         <View
+             android:layout_width="match_parent"
+             android:layout_height="1dp"
+             android:layout_alignParentBottom="true"
+             android:background="@color/grey" />
+     </RelativeLayout>
+     
+     
+      <!-- Google Plus -->
+     
+      <RelativeLayout
+         android:layout_width="match_parent"
+         android:layout_height="50sp"
+         android:clickable="true"
+         android:background="@drawable/btn_bg" >
+
+         <ImageView
+             android:id="@+id/google_icon"
+             android:layout_width="40sp"
+             android:layout_height="40sp"
+             android:layout_centerVertical="true"
+             android:layout_marginLeft="5sp"
+             android:scaleType="fitXY"
+             android:src="@drawable/icon_googleplus" />
+
+         <TextView
+             android:id="@+id/google_name"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_alignTop="@+id/google_icon"
+             android:layout_marginLeft="5sp"
+             android:layout_marginRight="5sp"
+             android:layout_toLeftOf="@+id/google_icon"
+             android:layout_toRightOf="@+id/google_icon"
+             android:singleLine="true"
+             android:text="@string/title_google_plus"
+             android:textColor="@color/black"
+             android:textSize="15sp"
+             android:textStyle="bold" />
+
+         <TextView
+             android:id="@+id/google_content"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_alignLeft="@+id/google_name"
+             android:layout_alignRight="@+id/google_name"
+             android:layout_below="@+id/google_name"
+             android:singleLine="true"
+             android:text="@string/info_google_plus"
+             android:textColor="@color/black"
+             android:textSize="13sp" />
+
+         <ImageView
+             android:id="@+id/img_indicator2"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_alignParentRight="true"
+             android:layout_centerVertical="true"
+             android:layout_marginRight="5sp"
+             android:src="@drawable/ic_action_next_item" />
+
+         <View
+             android:layout_width="match_parent"
+             android:layout_height="1dp"
+             android:layout_alignParentBottom="true"
+             android:background="@color/grey" />
+     </RelativeLayout>
+     
+       <!-- Website -->
+     
+      <RelativeLayout
+         android:layout_width="match_parent"
+         android:layout_height="50sp"
+         android:background="@drawable/btn_bg" >
+
+         <ImageView
+             android:id="@+id/website_icon"
+             android:layout_width="40sp"
+             android:layout_height="40sp"
+             android:layout_centerVertical="true"
+             android:layout_marginLeft="5sp"
+             android:background="@drawable/icon_website"
+             android:scaleType="fitXY"
+             android:src="@drawable/icon_website" />
+
+         <TextView
+             android:id="@+id/website_name"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_alignTop="@+id/website_icon"
+             android:layout_marginLeft="5sp"
+             android:layout_marginRight="5sp"
+             android:layout_toLeftOf="@+id/img_indicator3"
+             android:layout_toRightOf="@+id/website_icon"
+             android:singleLine="true"
+             android:text="@string/title_website"
+             android:textColor="@color/black"
+             android:textSize="15sp"
+             android:textStyle="bold" />
+
+         <TextView
+             android:id="@+id/website_content"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_alignLeft="@+id/website_name"
+             android:layout_alignRight="@+id/website_name"
+             android:layout_below="@+id/website_name"
+             android:singleLine="true"
+             android:text="@string/info_website"
+             android:textColor="@color/black"
+             android:textSize="13sp" />
+
+         <ImageView
+             android:id="@+id/img_indicator3"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_alignParentRight="true"
+             android:layout_centerVertical="true"
+             android:layout_marginRight="5sp"
+             android:src="@drawable/ic_action_next_item" />
+
+         <View
+             android:layout_width="match_parent"
+             android:layout_height="1dp"
+             android:layout_alignParentBottom="true"
+             android:background="@color/grey" />
+     </RelativeLayout>
+     
+      <!-- Rate Us -->
+     
+      <RelativeLayout
+         android:layout_width="match_parent"
+         android:layout_height="50sp"
+         android:background="@drawable/btn_bg" >
+
+         <ImageView
+             android:id="@+id/rate_icon"
+             android:layout_width="40sp"
+             android:layout_height="40sp"
+             android:layout_centerVertical="true"
+             android:layout_marginLeft="5sp"
+             android:scaleType="fitXY"
+             android:src="@drawable/icon_rate_me" />
+
+         <TextView
+             android:id="@+id/rate_name"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_alignTop="@+id/rate_icon"
+             android:layout_marginLeft="5sp"
+             android:layout_marginRight="5sp"
+             android:layout_toLeftOf="@+id/img_indicator4"
+             android:layout_toRightOf="@+id/rate_icon"
+             android:singleLine="true"
+             android:text="@string/title_rate_us"
+             android:textColor="@color/black"
+             android:textSize="15sp"
+             android:textStyle="bold" />
+
+         <TextView
+             android:id="@+id/rateus_content"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_alignLeft="@+id/rate_name"
+             android:layout_alignRight="@+id/rate_name"
+             android:layout_below="@+id/rate_name"
+             android:singleLine="true"
+             android:text="@string/info_rate_us"
+             android:textColor="@color/black"
+             android:textSize="13sp" />
+
+         <ImageView
+             android:id="@+id/img_indicator4"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_alignParentRight="true"
+             android:layout_centerVertical="true"
+             android:layout_marginRight="5sp"
+             android:src="@drawable/ic_action_next_item" />
+
+         <View
+             android:layout_width="match_parent"
+             android:layout_height="1dp"
+             android:layout_alignParentBottom="true"
+             android:background="@color/grey" />
+     </RelativeLayout>
+     
+      <!-- More Apps -->
+     
+      <RelativeLayout
+         android:layout_width="match_parent"
+         android:layout_height="50sp"
+         android:background="@drawable/btn_bg" >
+
+         <ImageView
+             android:id="@+id/apps_icon"
+             android:layout_width="40sp"
+             android:layout_height="40sp"
+             android:layout_centerVertical="true"
+             android:layout_marginLeft="5sp"
+             android:scaleType="fitXY"
+             android:src="@drawable/icon_more_app" />
+
+         <TextView
+             android:id="@+id/apps_name"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_alignTop="@+id/apps_icon"
+             android:layout_marginLeft="5sp"
+             android:layout_marginRight="5sp"
+             android:layout_toLeftOf="@+id/img_indicator5"
+             android:layout_toRightOf="@+id/apps_icon"
+             android:singleLine="true"
+             android:text="@string/title_more_app"
+             android:textColor="@color/black"
+             android:textSize="15sp"
+             android:textStyle="bold" />
+
+         <TextView
+             android:id="@+id/app_content"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_alignLeft="@+id/apps_name"
+             android:layout_alignRight="@+id/apps_name"
+             android:layout_below="@+id/apps_name"
+             android:singleLine="true"
+             android:text="@string/info_more_app"
+             android:textColor="@color/black"
+             android:textSize="13sp" />
+
+         <ImageView
+             android:id="@+id/img_indicator5"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_alignParentRight="true"
+             android:layout_centerVertical="true"
+             android:layout_marginRight="5sp"
+             android:src="@drawable/ic_action_next_item" />
+
+         <View
+             android:layout_width="match_parent"
+             android:layout_height="1dp"
+             android:layout_alignParentBottom="true"
+             android:background="@color/grey" />
+     </RelativeLayout>
+
+</LinearLayout>

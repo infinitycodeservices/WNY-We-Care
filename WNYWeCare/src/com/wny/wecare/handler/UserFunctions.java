@@ -14,7 +14,7 @@ public class UserFunctions {
 	
 	private JSONParser jsonParser;
 	
-	private static String loginURL = "http://infinitycodeservices.com/";
+	private static String loginURL = "http://infinitycodeservices.com/index.php";
 	private static String registerURL = "http://infinitycodeservices.com/";
 	
 	private static String login_tag = "login";

@@ -261,7 +261,7 @@ public class MainActivity extends Activity implements OnFragmentInteractionListe
 	
 	@Override
 	public void onBackPressed() {
-	   System.exit(0);
+	    moveTaskToBack(true);
 	}
 
 	public static ArrayList<HashMap<String, String>> getResultsList()	{
@@ -280,4 +280,7 @@ public class MainActivity extends Activity implements OnFragmentInteractionListe
 			.replace(R.id.frame_container, new ResultsFragment()).addToBackStack(null).commit();
 	}
 	
-}
+	
+	}
+	
+	

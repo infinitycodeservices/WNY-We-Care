@@ -8,11 +8,11 @@
     <string name="drawer_close">Slider Menu Closed</string>
     <string name="town_prompt">Choose a Town:</string>
     <string name="search_title">Search</string>
-    <string name="searchbytown">Search By Town</string>
+    <string name="searchbytown">Search</string>
     <string name="searchbycurrentlocation">Search By Current Location</string>
     <string name="searchbyzip">Search By Zip</string>
-    <string name="searchbylocation">Search By GPS Location</string>
-    <string name="info_about_us"><b> Infinity Code Services </b> gives you an edge in finding the most wonderful places surrounding you</string>
+    <string name="searchbylocation"></string>
+    <string name="info_about_us"><b> Infinity Code Services </b> is native to Western New York with a shared passion for using technology and innavation to enhance our clients business capabilities as well as showcase IT culture in WNY</string>
     <string name="title_contact_us">Contact us</string>
     <string name="info_contact_us">Contact us if you need any help</string>
     <string name="link_contact_us">Email</string>
@@ -37,6 +37,11 @@
     <string name="favorite">Save</string>
     <string name="rate">Rate Agency</string>
     <string name="fav_title">Favorites</string>
+    <string name="closebtn">X</string>
+    <string name="Submitbtn">Submit</string>
+    <string name="message">Please Leave Feedback</string>
+    <string name="title">Feedback</string>
+    <string name="button">Button</string>
 
     <!-- <string-array name="town_arrays">
         <item>Alden</item>

@@ -56,10 +56,10 @@
 
             <com.facebook.widget.LoginButton
                 android:id="@+id/fbbutton"
-                android:background="@drawable/layers_fb_button_bg"
                 android:layout_width="fill_parent"
-                android:layout_height="40dp"
+                android:layout_height="50dp"
                 android:layout_marginTop="20dp"
+                android:background="@drawable/layers_fb_button_bg"
                 android:text="Login with Facebook"
                 android:textColor="#fff"
                 android:textStyle="bold" />
@@ -68,49 +68,49 @@
                 android:id="@+id/gplus"
                 style="@drawable/layers_gplus_button_bg"
                 android:layout_width="fill_parent"
-                android:layout_height="40dp"
+                android:layout_height="50dp"
                 android:layout_marginTop="20dp"
                 android:text="Login with Google"
                 android:textColor="#fff"
                 android:textStyle="bold" />
-            
+
             <LinearLayout
-        android:id="@+id/llProfile"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:orientation="horizontal"
-        android:weightSum="3"
-        android:visibility="gone">
-
-        <ImageView
-            android:id="@+id/imgProfilePic"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content" 
-            android:layout_weight="1"/>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:orientation="vertical"
-            android:layout_weight="2" >
-
-            <TextView
-                android:id="@+id/txtName"
-                android:layout_width="wrap_content"
+                android:id="@+id/llProfile"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:textSize="20dp" />
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                android:weightSum="3" >
 
-            <TextView
-                android:id="@+id/txtEmail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:textSize="18dp" />
-        </LinearLayout>
-    </LinearLayout>
+                <ImageView
+                    android:id="@+id/imgProfilePic"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="2"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/txtName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:id="@+id/txtEmail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:textSize="18dp" />
+                </LinearLayout>
+            </LinearLayout>
 
             <View
                 android:layout_width="fill_parent"
@@ -128,16 +128,14 @@
 
                 <TextView
                     android:id="@+id/textView"
-                    android:textSize="15dp"
-                    android:textStyle="italic"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/poweredby"
-                    android:textColor="#f07333" />
-
+                    android:textColor="#f07333"
+                    android:textSize="15dp"
+                    android:textStyle="italic" />
             </LinearLayout>
         </LinearLayout>
-
     </RelativeLayout>
 
 </ScrollView>

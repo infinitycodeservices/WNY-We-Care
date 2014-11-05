@@ -41,9 +41,9 @@ public class FacebookFragment extends Fragment {
 			Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.login_activity, container, false);
 
-		LoginButton fb_button = (LoginButton) view.findViewById(R.id.fbbutton);
-		fb_button.setFragment(this);
-		fb_button.setReadPermissions(permissions);
+		LoginButton authButton = (LoginButton) view.findViewById(R.id.fbbutton);
+		authButton.setFragment(this);
+		authButton.setReadPermissions(permissions);
 
 		return view;
 	}

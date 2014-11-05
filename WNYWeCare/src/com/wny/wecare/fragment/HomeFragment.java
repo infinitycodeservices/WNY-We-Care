@@ -17,9 +17,11 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnKeyListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -27,6 +29,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.wny.wecare.CustomOnItemSelectedListener;
 import com.wny.wecare.MainActivity;
@@ -42,17 +45,18 @@ public class HomeFragment extends Fragment implements OnItemSelectedListener, On
 	private String selection;
 
 	// JSON Node names
+
 	private static final String TAG_SUCCESS = "success";
 	private static final String TAG_AGENCY = "agency";
 	private static final String TAG_AID = "AgencyID";
 	private static final String TAG_NAME = "AgencyName";
-	
+
 	private static final String[] list={"Alden", "Amherst", "Angola",
-        "Blasdell", "Boston", "Bowmansville", "Buffalo", "Cheektowaga", "Clarence",
-        "Depew", "Derby", "East Aurora", "Eden", "Elma", "Getzville", "Gowanda",
-        "Grand Island", "Holland", "Irving", "Kenmore", "Lackawanna", "Lake View",
-        "Lancaster", "Lawtons", "North Collins", "Orchard Park", "Snyder", "Springville",
-        "Tonawanda", "West Seneca", "Williamsville"};
+		"Blasdell", "Boston", "Bowmansville", "Buffalo", "Cheektowaga", "Clarence",
+		"Depew", "Derby", "East Aurora", "Eden", "Elma", "Getzville", "Gowanda",
+		"Grand Island", "Holland", "Irving", "Kenmore", "Lackawanna", "Lake View",
+		"Lancaster", "Lawtons", "North Collins", "Orchard Park", "Snyder", "Springville",
+		"Tonawanda", "West Seneca", "Williamsville"};
 
 	// Setup ArrayList from main activity to store results
 	ArrayList<HashMap<String, String>> resultsList = null;
@@ -73,7 +77,7 @@ public class HomeFragment extends Fragment implements OnItemSelectedListener, On
 		btnSubmit.setOnClickListener(this);
 		spinner =(Spinner)rootView.findViewById(R.id.spinner);
 		spinner.setOnItemSelectedListener(this);
-		
+
 		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item,list);
 		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		spinner.setAdapter(dataAdapter);
@@ -134,7 +138,7 @@ public class HomeFragment extends Fragment implements OnItemSelectedListener, On
 	@Override
 	public void onItemSelected(AdapterView<?> parent,
 			View v, int position, long id) {
-		
+
 	}
 
 	@Override
@@ -238,10 +242,13 @@ public class HomeFragment extends Fragment implements OnItemSelectedListener, On
 		} 
 		catch (JSONException e) {
 			e.printStackTrace();
-		}
+		};
+
 	}
 
 
 }
+
+
 
 

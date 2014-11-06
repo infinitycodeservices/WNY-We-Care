@@ -58,7 +58,7 @@ ConnectionCallbacks, OnConnectionFailedListener {
 	Button btnLogin;
 
 	// url to create new user
-	private static String url_create_user = "http://infinitycodeservices.com/index.php";
+	private static String url_create_user = "http://infinitycodeservices.com/create_user.php";
 
 	// JSON Node names
 	private static final String TAG_SUCCESS = "success";
@@ -106,12 +106,14 @@ ConnectionCallbacks, OnConnectionFailedListener {
 		uiHelper = new UiLifecycleHelper(this, sessionStatusCallback);
 		uiHelper.onCreate(savedInstanceState);
 
+		// Create Button
 		btnLogin = (Button) findViewById(R.id.btnEmail);
 		btnSignIn = (SignInButton) findViewById(R.id.gplus);
+
+		// Edit Text
 		txtName = (TextView) findViewById(R.id.txtName);
 		txtEmail = (TextView) findViewById(R.id.txtEmail);
 		llProfileLayout = (LinearLayout) findViewById(R.id.llProfile);
-
 
 
 		// Button click listeners
@@ -189,12 +191,7 @@ ConnectionCallbacks, OnConnectionFailedListener {
 
 					Intent intent = new Intent(LoginActivity.this,
 							MainActivity.class);
-
-
-
-
 					startActivity(intent);
-
 					finish();
 				}
 			}
@@ -315,11 +312,14 @@ ConnectionCallbacks, OnConnectionFailedListener {
 	 * */
 	@Override
 	public void onClick(View v) {
+		// creating new user in background thread
+		new CreateNewUser().execute();
 		switch (v.getId()) {
 		case R.id.gplus:
 			// Signin button clicked
 			signInWithGplus();
 			break;
+			
 
 		}
 	}
@@ -333,7 +333,8 @@ ConnectionCallbacks, OnConnectionFailedListener {
 			resolveSignInError();
 		}
 	}
-
+	
+	
 
 	/**
 	 * Background Async Task to Create new user

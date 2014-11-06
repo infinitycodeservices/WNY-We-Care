@@ -21,7 +21,7 @@ public class ResultsFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
-		View rootView = inflater.inflate(R.layout.fragment_home, container, false);
+		View rootView = inflater.inflate(R.layout.fragment_results, container, false);
 		
 		resultsList = MainActivity.getResultsList();
 		

@@ -46,10 +46,15 @@ public class HomeFragment extends Fragment implements OnItemSelectedListener, On
 
 	// JSON Node names
 
-	private static final String TAG_SUCCESS = "success";
-	private static final String TAG_AGENCY = "agency";
-	private static final String TAG_AID = "AgencyID";
-	private static final String TAG_NAME = "AgencyName";
+	private static final String AGENCY = "AgencyName";
+	private static final String AID = "AgencyID";
+	private static final String ADDR1 = "Address1";
+	private static final String ADDR2 = "Addr2";
+	private static final String CITY = "City";
+	private static final String STATE = "State";
+	private static final String ZIP = "Zip";
+	private static final String LAT = "Lat";
+	private static final String LNG = "Lng";
 
 	private static final String[] list={"Alden", "Amherst", "Angola",
 		"Blasdell", "Boston", "Bowmansville", "Buffalo", "Cheektowaga", "Clarence",
@@ -155,45 +160,38 @@ public class HomeFragment extends Fragment implements OnItemSelectedListener, On
 		params.add(new BasicNameValuePair("town", tsearch));
 
 		// Getting JSON string from URL
-		JSONObject json = jParser.makeHttpRequest(url_search_agency, "GET", params);
+		JSONArray json = jParser.getJSONFromUrl(url_search_agency, params);
 
-		// Check your log cat for JSON reponse
-		Log.d("Search Results: ", json.toString());
-
-		try {
-			// Checking for SUCCESS TAG
-			int success = json.getInt(TAG_SUCCESS);
-
-			if (success == 1) {
-				// products found
-				// Getting Array of Results
-				agency = json.getJSONArray(TAG_AGENCY);
-
-				// looping through All results
-				for (int i = 0; i < agency.length(); i++) {
-					JSONObject c = agency.getJSONObject(i);
-
-					// Storing each json item in variable
-					String id = c.getString(TAG_AID);
-					String name = c.getString(TAG_NAME);
-
-					// creating new HashMap
-					HashMap<String, String> map = new HashMap<String, String>();
-
-					// adding each child node to HashMap key => value
-					map.put(TAG_AID, id);
-					map.put(TAG_NAME, name);
-
-					// adding HashList to ArrayList
-					resultsList.add(map);
-				}
+for (int i = 0; i < json.length(); i++)	{
+			
+			try	{
+				JSONObject c = json.getJSONObject(i);
+				String aid = c.getString(AID);
+				String agency = c.getString(AGENCY);
+				String addr1 = c.getString(ADDR1);
+				String addr2 = c.getString(CITY) + " " +
+				c.getString(STATE) + ", " + c.getString(ZIP);
+				String lat = c.getString(LAT);
+				String lng = c.getString(LNG);
+				
+				HashMap<String, String> map = new HashMap<String, String>();
+				
+				//Add child node to HashMap key & value
+				map.put(AID, aid);
+				map.put(AGENCY, agency);
+				map.put(ADDR1, addr1);
+				map.put(ADDR2, addr2);
+				map.put(LAT, lat);
+				map.put(LNG, lng);
+				resultsList.add(map);
 			}
-
+			catch (JSONException e) {
+				e.printStackTrace();
+				
 			MainActivity.setResultsList(resultsList);
-		} 
-		catch (JSONException e) {
-			e.printStackTrace();
-		}
+			}
+			
+		};
 	}
 
 	public void agencySearch(int zsearch)	{
@@ -204,44 +202,36 @@ public class HomeFragment extends Fragment implements OnItemSelectedListener, On
 		params.add(new BasicNameValuePair("zip", Integer.toString(zsearch)));
 
 		// Getting JSON string from URL
-		JSONObject json = jParser.makeHttpRequest(url_search_agency, "GET", params);
+		JSONArray json = jParser.getJSONFromUrl(url_search_agency, params);
 
-		// Check your log cat for JSON reponse
-		Log.d("Search Results: ", json.toString());
-
-		try {
-			// Checking for SUCCESS TAG
-			int success = json.getInt(TAG_SUCCESS);
-
-			if (success == 1) {
-				// products found
-				// Getting Array of Results
-				agency = json.getJSONArray(TAG_AGENCY);
-
-				// looping through All results
-				for (int i = 0; i < agency.length(); i++) {
-					JSONObject c = agency.getJSONObject(i);
-
-					// Storing each json item in variable
-					String id = c.getString(TAG_AID);
-					String name = c.getString(TAG_NAME);
-
-					// creating new HashMap
-					HashMap<String, String> map = new HashMap<String, String>();
-
-					// adding each child node to HashMap key => value
-					map.put(TAG_AID, id);
-					map.put(TAG_NAME, name);
-
-					// adding HashList to ArrayList
-					resultsList.add(map);
-				}
+		for (int i = 0; i < json.length(); i++)	{
+			
+			try	{
+				JSONObject c = json.getJSONObject(i);
+				String aid = c.getString(AID);
+				String agency = c.getString(AGENCY);
+				String addr1 = c.getString(ADDR1);
+				String addr2 = c.getString(CITY) + " " +
+				c.getString(STATE) + ", " + c.getString(ZIP);
+				String lat = c.getString(LAT);
+				String lng = c.getString(LNG);
+				
+				HashMap<String, String> map = new HashMap<String, String>();
+				
+				//Add child node to HashMap key & value
+				map.put(AID, aid);
+				map.put(AGENCY, agency);
+				map.put(ADDR1, addr1);
+				map.put(ADDR2, addr2);
+				map.put(LAT, lat);
+				map.put(LNG, lng);
+				resultsList.add(map);
 			}
-
+			catch (JSONException e) {
+				e.printStackTrace();
 			MainActivity.setResultsList(resultsList);
-		} 
-		catch (JSONException e) {
-			e.printStackTrace();
+			}
+			
 		};
 
 	}

@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -93,27 +94,19 @@ public class LoginActivity extends Activity implements OnClickListener {
 
 				// getting JSON Object
 				// Note that create User url accepts POST method
-				JSONObject json = jsonParser.makeHttpRequest(url_create_user,
-						"POST", params);
+				JSONArray json = jsonParser.getJSONFromUrl(url_create_user, params);
 				
 				// check log cat fro response
 				Log.d("Create Response", json.toString());
 
 				// check for success tag
 				try {
-					int success = json.getInt(TAG_SUCCESS);
-
-					if (success == 1) {
-						// successfully created user
-						Intent i = new Intent(getApplicationContext(), MainActivity.class);
-						startActivity(i);
+					Intent i = new Intent(getApplicationContext(), MainActivity.class);
+					startActivity(i);
 						
 						// closing this screen
-						finish();
-					} else {
-						// failed to create User
-					}
-				} catch (JSONException e) {
+					finish();
+					}catch (JSONException e) {
 					e.printStackTrace();
 				}
 
@@ -130,19 +123,16 @@ public class LoginActivity extends Activity implements OnClickListener {
 
 		}
 
-		@Override
 		public void onConnectionFailed(ConnectionResult arg0) {
 			// TODO Auto-generated method stub
 			
 		}
 
-		@Override
 		public void onConnected(Bundle arg0) {
 			// TODO Auto-generated method stub
 			
 		}
 
-		@Override
 		public void onConnectionSuspended(int arg0) {
 			// TODO Auto-generated method stub
 			

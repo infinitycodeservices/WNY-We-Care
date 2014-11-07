@@ -14,6 +14,7 @@ import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
@@ -25,7 +26,6 @@ import android.widget.ListView;
 
 import com.wny.wecare.fragment.OnFragmentInteractionListener;
 import com.wny.wecare.fragment.ResultsFragment;
-
 import com.wny.wecare.adapter.NavDrawerListAdapter;
 import com.wny.wecare.fragment.AboutUsFragment;
 import com.wny.wecare.fragment.FavoritesFragment;
@@ -67,6 +67,9 @@ public class MainActivity extends Activity implements OnFragmentInteractionListe
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		super.onCreate(savedInstanceState);
+		StrictMode.ThreadPolicy policy = new StrictMode.
+				ThreadPolicy.Builder().permitAll().build();
+				StrictMode.setThreadPolicy(policy);
 		 FragmentManager fm = getFragmentManager();
 		    fm.addOnBackStackChangedListener(new OnBackStackChangedListener() {
 		    	

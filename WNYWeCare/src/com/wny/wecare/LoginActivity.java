@@ -84,7 +84,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 			 * Creating User
 			 * */
 			protected String doInBackground(String... args) {
-				String email = inputEmail.getText().toString();
+				string email = findViewById(R.id.email).toString();
 				
 
 				// Building Parameters

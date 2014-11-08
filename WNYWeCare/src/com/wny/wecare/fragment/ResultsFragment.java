@@ -6,6 +6,8 @@ import java.util.Map;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.wny.wecare.MainActivity;
 import com.wny.wecare.R;
 
@@ -42,6 +44,17 @@ public class ResultsFragment extends Fragment {
         map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
                 .getMap();
         map.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+        
+        //Add markers to the map from resultsList
+        for (int i = 0; i < resultsList.size(); i++)	{
+        	Double latitude = Double.valueOf(resultsList.get(i).get("Lat"));
+        	Double longitude = Double.valueOf(resultsList.get(i).get("Lng"));
+        	String mname = resultsList.get(i).get("AgencyName");
+        	LatLng posit = new LatLng(latitude, longitude);
+        	map.addMarker(new MarkerOptions()
+        	.position(posit)
+        	.title(mname));
+        }
         
         return rootView;
     

@@ -266,6 +266,7 @@ public class MainActivity extends Activity implements OnFragmentInteractionListe
 	@Override
 	public void onBackPressed() {
 	    moveTaskToBack(true);
+	    finish();
 	}
 
 	public static ArrayList<Map<String, String>> getResultsList()	{

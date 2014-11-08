@@ -1,7 +1,10 @@
 package com.wny.wecare;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -92,32 +95,42 @@ public class LoginActivity extends Activity implements OnClickListener {
 		@Override
         protected String doInBackground(String... args) {
             // TODO Auto-generated method stub
-            // Check for success tag
-            int success;
+           
+			// Setup ArrayList from main activity to store results
+			ArrayList<Map<String, String>> emailList = new ArrayList<Map<String,  String>>();
            
             String email = findViewById(R.id.email).toString();
            
             // Building Parameters
 			List<NameValuePair> params = new ArrayList<NameValuePair>();
-			params.add(new BasicNameValuePair("uid", strUid));
-			params.add(new BasicNameValuePair("email", email));
+			params.add(new BasicNameValuePair("Email", email));
 			
           // Creating JSON Parser object
 			JSONParser jParser = new JSONParser();
+			
+			// Getting JSON string from URL
+			JSONArray json = jParser.getJSONFromUrl(url_create_user, params);
 
-			Log.d("request!", "starting");
-			// getting product detail s by making HTTP request
-			JSONArray json = jParser.getJSONFromUrl(
-			        url_create_user , params);
-
-			// check your log for json response
-			Log.d("Login attempt", json.toString());
-
-			// json success tag
-           //  success = json.getInt(TAG_SUCCESS);
-           //  if (success == 1) 
-			{
-			    Log.d("Login Successful!", json.toString());
+			for (int i = 0; i < json.length(); i++)	{
+				HashMap<String, String> map = new HashMap<String, String>();
+				
+				try	{
+					JSONObject c = (JSONObject) json.get(i);
+					//Fill map
+					Iterator iter = c.keys();
+					while(iter.hasNext())	{
+						String currentKey = (String) iter.next();
+						map.put(currentKey, c.getString(currentKey));
+					}
+					emailList.add(map);
+					
+				}
+				catch (JSONException e) {
+					e.printStackTrace();
+					
+				}
+				
+			};
 
 			    //SAVE
 			    SharedPreferences ui = getSharedPreferences("UserInfo", MODE_PRIVATE);
@@ -132,9 +145,6 @@ public class LoginActivity extends Activity implements OnClickListener {
 			    // Returns Toast "Login success!"
 			    //return json.getString(TAG_MESSAGE);
 			
-
-			}
-
             return null;
 
         }
@@ -152,13 +162,13 @@ public class LoginActivity extends Activity implements OnClickListener {
 
         }
 
-    }
+	}
 
-	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		
 	}
 	
 }
+
 

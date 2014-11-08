@@ -4,6 +4,7 @@ package com.wny.wecare;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -40,7 +41,7 @@ public class MainActivity extends Activity implements OnFragmentInteractionListe
 	protected static final String EXTRA_FACEBOOK_USER = "facebook_user";
 	
 	// array to store search results for use in multiple fragments
-		protected static ArrayList<HashMap<String, String>> resultsList = null;
+		protected static ArrayList<Map<String, String>> resultsList = null;
 	
 	private DrawerLayout mDrawerLayout;
 	private ListView mDrawerList;
@@ -267,11 +268,11 @@ public class MainActivity extends Activity implements OnFragmentInteractionListe
 	    moveTaskToBack(true);
 	}
 
-	public static ArrayList<HashMap<String, String>> getResultsList()	{
+	public static ArrayList<Map<String, String>> getResultsList()	{
 		return resultsList;
 	}
 	
-	public static void setResultsList(ArrayList<HashMap<String, String>> arrList)	{
+	public static void setResultsList(ArrayList<Map<String, String>> arrList)	{
 		MainActivity.resultsList = arrList;
 	}
 

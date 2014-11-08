@@ -96,19 +96,18 @@ public class LoginActivity extends Activity implements OnClickListener {
 				// Note that create User url accepts POST method
 				JSONArray json = jsonParser.getJSONFromUrl(url_create_user, params);
 				
-				// check log cat fro response
+				// check log cat for response
 				Log.d("Create Response", json.toString());
 
 				// check for success tag
-				try {
+				
 					Intent i = new Intent(getApplicationContext(), MainActivity.class);
 					startActivity(i);
 						
 						// closing this screen
 					finish();
-					}catch (JSONException e) {
-					e.printStackTrace();
-				}
+					
+				
 
 				return null;
 			}

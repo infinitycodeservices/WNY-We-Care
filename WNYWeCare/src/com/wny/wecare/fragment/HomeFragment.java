@@ -2,7 +2,9 @@ package com.wny.wecare.fragment;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -42,7 +44,7 @@ public class HomeFragment extends Fragment implements OnItemSelectedListener, On
 
 	private Spinner spinner;
 	private Button btnSubmit;
-	private String selection;
+	
 
 	// JSON Node names
 
@@ -64,7 +66,7 @@ public class HomeFragment extends Fragment implements OnItemSelectedListener, On
 		"Tonawanda", "West Seneca", "Williamsville"};
 
 	// Setup ArrayList from main activity to store results
-	ArrayList<HashMap<String, String>> resultsList = null;
+	ArrayList<Map<String, String>> resultsList = new ArrayList<Map<String,  String>>();
 
 	// Creating JSON Parser object
 	JSONParser jParser = new JSONParser();
@@ -157,41 +159,34 @@ public class HomeFragment extends Fragment implements OnItemSelectedListener, On
 		String url_search_agency = "http://www.infinitycodeservices.com/get_agency_by_city.php";
 		// Building parameters for the search
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
-		params.add(new BasicNameValuePair("town", tsearch));
+		params.add(new BasicNameValuePair("City", tsearch));
 
 		// Getting JSON string from URL
 		JSONArray json = jParser.getJSONFromUrl(url_search_agency, params);
 
-for (int i = 0; i < json.length(); i++)	{
+		for (int i = 0; i < json.length(); i++)	{
+			HashMap<String, String> map = new HashMap<String, String>();
 			
 			try	{
-				JSONObject c = json.getJSONObject(i);
-				String aid = c.getString(AID);
-				String agency = c.getString(AGENCY);
-				String addr1 = c.getString(ADDR1);
-				String addr2 = c.getString(CITY) + " " +
-				c.getString(STATE) + ", " + c.getString(ZIP);
-				String lat = c.getString(LAT);
-				String lng = c.getString(LNG);
-				
-				HashMap<String, String> map = new HashMap<String, String>();
-				
-				//Add child node to HashMap key & value
-				map.put(AID, aid);
-				map.put(AGENCY, agency);
-				map.put(ADDR1, addr1);
-				map.put(ADDR2, addr2);
-				map.put(LAT, lat);
-				map.put(LNG, lng);
+				JSONObject c = (JSONObject) json.get(i);
+				//Fill map
+				Iterator iter = c.keys();
+				while(iter.hasNext())	{
+					String currentKey = (String) iter.next();
+					map.put(currentKey, c.getString(currentKey));
+				}
 				resultsList.add(map);
+				
 			}
 			catch (JSONException e) {
 				e.printStackTrace();
 				
-			MainActivity.setResultsList(resultsList);
 			}
 			
 		};
+		
+		MainActivity.setResultsList(resultsList);
+		
 	}
 
 	public void agencySearch(int zsearch)	{
@@ -205,34 +200,27 @@ for (int i = 0; i < json.length(); i++)	{
 		JSONArray json = jParser.getJSONFromUrl(url_search_agency, params);
 
 		for (int i = 0; i < json.length(); i++)	{
+			HashMap<String, String> map = new HashMap<String, String>();
 			
 			try	{
-				JSONObject c = json.getJSONObject(i);
-				String aid = c.getString(AID);
-				String agency = c.getString(AGENCY);
-				String addr1 = c.getString(ADDR1);
-				String addr2 = c.getString(CITY) + " " +
-				c.getString(STATE) + ", " + c.getString(ZIP);
-				String lat = c.getString(LAT);
-				String lng = c.getString(LNG);
-				
-				HashMap<String, String> map = new HashMap<String, String>();
-				
-				//Add child node to HashMap key & value
-				map.put(AID, aid);
-				map.put(AGENCY, agency);
-				map.put(ADDR1, addr1);
-				map.put(ADDR2, addr2);
-				map.put(LAT, lat);
-				map.put(LNG, lng);
+				JSONObject c = (JSONObject) json.get(i);
+				//Fill map
+				Iterator iter = c.keys();
+				while(iter.hasNext())	{
+					String currentKey = (String) iter.next();
+					map.put(currentKey, c.getString(currentKey));
+				}
 				resultsList.add(map);
+				
 			}
 			catch (JSONException e) {
 				e.printStackTrace();
-			MainActivity.setResultsList(resultsList);
+				
 			}
 			
 		};
+		
+		MainActivity.setResultsList(resultsList);
 
 	}
 

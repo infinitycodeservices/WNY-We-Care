@@ -12,6 +12,7 @@ import org.json.JSONObject;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,6 +20,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.wny.wecare.handler.JSONParser;
@@ -36,7 +38,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 	public String strUid;
 
 	// url to create new user
-	private static String url_create_user = "http://infinitycodeservices.com/get_userid_by_email.php";
+	private static String url_create_user = "http://infinitycodeservices.com/create_user.php";
 
 	// JSON Node names
 	private static final String TAG_SUCCESS = "success";
@@ -69,6 +71,8 @@ public class LoginActivity extends Activity implements OnClickListener {
 	 * */
 	class CreateNewUser extends AsyncTask<String, String, String> {
 
+		
+
 		/**
 		 * Before starting background thread Show Progress Dialog
 		 * */
@@ -85,85 +89,75 @@ public class LoginActivity extends Activity implements OnClickListener {
 		/**
 		 * Creating User
 		 * */
-		protected String doInBackground(String... args) {
-			// Check for success tag
-			int success;
-
-			String email = findViewById(R.id.email).toString();
-
-
-			// Building Parameters
+		@Override
+        protected String doInBackground(String... args) {
+            // TODO Auto-generated method stub
+            // Check for success tag
+            int success;
+           
+            String email = findViewById(R.id.email).toString();
+           
+            // Building Parameters
 			List<NameValuePair> params = new ArrayList<NameValuePair>();
-			params.add(new BasicNameValuePair("email", email));
 			params.add(new BasicNameValuePair("uid", strUid));
-
-
-			// Creating JSON Parser object
+			params.add(new BasicNameValuePair("email", email));
+			
+          // Creating JSON Parser object
 			JSONParser jParser = new JSONParser();
 
-			// Getting JSON string from URL
-			JSONArray json = jParser.getJSONFromUrl(url_create_user, params);
+			Log.d("request!", "starting");
+			// getting product detail s by making HTTP request
+			JSONArray json = jParser.getJSONFromUrl(
+			        url_create_user , params);
 
+			// check your log for json response
+			Log.d("Login attempt", json.toString());
 
+			// json success tag
+           //  success = json.getInt(TAG_SUCCESS);
+           //  if (success == 1) 
+			{
+			    Log.d("Login Successful!", json.toString());
 
+			    //SAVE
+			    SharedPreferences ui = getSharedPreferences("UserInfo", MODE_PRIVATE);
+			    SharedPreferences.Editor edUi = ui.edit();
+			    edUi.putString("uid", strUid);
+			    edUi.putString("email", email);
+			    edUi.commit();
 
-			// check for success tag
-			try {
-				success = json.getInt(TAG_SUCCESS);
+			    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+			    finish();
 
-				if (success == 1) {
-					Log.d("Successfully Login!", json.toString());
-					// successfully created user
-					 //SAVE
-                    		SharedPreferences ui = getSharedPreferences("UserInfo", MODE_PRIVATE);
-                		SharedPreferences.Editor edUi = ui.edit();
-                    		edUi.putString("uid", strUid);
-                    		edUi.putString("email", email);
-                		edUi.commit();
+			    // Returns Toast "Login success!"
+			    //return json.getString(TAG_MESSAGE);
+			
 
-                	 	startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                		finish();
-
-					// closing this screen
-					finish();
-				} else {
-					// failed to create User
-				}
-			} catch (JSONException e) {
-				e.printStackTrace();
 			}
 
-			return null;
-		}
+            return null;
 
-		/**
-		 * After completing background task Dismiss the progress dialog
-		 * **/
-		protected void onPostExecute(String file_url) {
-			// dismiss the dialog once done
-			pDialog.dismiss();
-		}
+        }
 
-	}
+        /**
+         * After completing background task Dismiss the progress dialog
+         * *
+         */
+        protected void onPostExecute(String file_url) {
+            // dismiss the dialog once product deleted
+            pDialog.dismiss();
+            if (file_url != null) {
+                Toast.makeText(LoginActivity.this, file_url, Toast.LENGTH_LONG).show();
+            }
 
-	public void onConnectionFailed(ConnectionResult arg0) {
-		// TODO Auto-generated method stub
+        }
 
-	}
-
-	public void onConnected(Bundle arg0) {
-		// TODO Auto-generated method stub
-
-	}
-
-	public void onConnectionSuspended(int arg0) {
-		// TODO Auto-generated method stub
-
-	}
+    }
 
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
-
+		
 	}
+	
 }

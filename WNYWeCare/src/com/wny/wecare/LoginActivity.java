@@ -33,114 +33,130 @@ public class LoginActivity extends Activity implements OnClickListener {
 	EditText inputEmail;
 	Button btnLogin;
 
+	public String strUid;
+
 	// url to create new user
 	private static String url_create_user = "http://infinitycodeservices.com/create_user.php";
 
 	// JSON Node names
-		private static final String TAG_SUCCESS = "success";
+	private static final String TAG_SUCCESS = "success";
 
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.login_activity);
+
+		// Edit Text
+		inputEmail = (EditText) findViewById(R.id.email);
+
+
+		// Create button
+		Button btnCreateUser = (Button) findViewById(R.id.btnEmail);
+
+		// button click event
+		btnCreateUser.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View view) {
+				// creating new user in background thread
+				new CreateNewUser().execute();
+			}
+		});
+	}
+
+	/**
+	 * Background Async Task to Create new User
+	 * */
+	class CreateNewUser extends AsyncTask<String, String, String> {
+
+		/**
+		 * Before starting background thread Show Progress Dialog
+		 * */
 		@Override
-		public void onCreate(Bundle savedInstanceState) {
-			super.onCreate(savedInstanceState);
-			setContentView(R.layout.login_activity);
-
-			// Edit Text
-			inputEmail = (EditText) findViewById(R.id.email);
-			
-
-			// Create button
-			Button btnCreateUser = (Button) findViewById(R.id.btnEmail);
-
-			// button click event
-			btnCreateUser.setOnClickListener(new View.OnClickListener() {
-
-				@Override
-				public void onClick(View view) {
-					// creating new user in background thread
-					new CreateNewUser().execute();
-				}
-			});
+		protected void onPreExecute() {
+			super.onPreExecute();
+			pDialog = new ProgressDialog(LoginActivity.this);
+			pDialog.setMessage("Creating User..");
+			pDialog.setIndeterminate(false);
+			pDialog.setCancelable(true);
+			pDialog.show();
 		}
 
 		/**
-		 * Background Async Task to Create new User
+		 * Creating User
 		 * */
-		class CreateNewUser extends AsyncTask<String, String, String> {
+		protected String doInBackground(String... args) {
+			// Check for success tag
+			int success;
 
-			/**
-			 * Before starting background thread Show Progress Dialog
-			 * */
-			@Override
-			protected void onPreExecute() {
-				super.onPreExecute();
-				pDialog = new ProgressDialog(LoginActivity.this);
-				pDialog.setMessage("Creating User..");
-				pDialog.setIndeterminate(false);
-				pDialog.setCancelable(true);
-				pDialog.show();
-			}
+			String email = findViewById(R.id.email).toString();
 
-			/**
-			 * Creating User
-			 * */
-			protected String doInBackground(String... args) {
-				String email = findViewById(R.id.email).toString();
-				
 
-				// Building Parameters
-				List<NameValuePair> params = new ArrayList<NameValuePair>();
-				params.add(new BasicNameValuePair("email", email));
-				
+			// Building Parameters
+			List<NameValuePair> params = new ArrayList<NameValuePair>();
+			params.add(new BasicNameValuePair("email", email));
+			params.add(new BasicNameValuePair("uid", strUid));
 
-				// getting JSON Object
-				// Note that create User url accepts POST method
-				JSONArray json = jsonParser.getJSONFromUrl(url_create_user, params);
-				
-				// check log cat fro response
-				Log.d("Create Response", json.toString());
 
-				// check for success tag
-				try {
+			// Creating JSON Parser object
+			JSONParser jParser = new JSONParser();
+
+			// Getting JSON string from URL
+			JSONArray json = jParser.getJSONFromUrl(url_create_user, params);
+
+
+
+
+			// check for success tag
+			try {
+				success = json.getInt(TAG_SUCCESS);
+
+				if (success == 1) {
+					Log.d("Successfully Login!", json.toString());
+					// successfully created user
 					Intent i = new Intent(getApplicationContext(), MainActivity.class);
 					startActivity(i);
-						
-						// closing this screen
+
+					// closing this screen
 					finish();
-					}catch (JSONException e) {
-					e.printStackTrace();
+				} else {
+					// failed to create User
 				}
-
-				return null;
+			} catch (JSONException e) {
+				e.printStackTrace();
 			}
 
-			/**
-			 * After completing background task Dismiss the progress dialog
-			 * **/
-			protected void onPostExecute(String file_url) {
-				// dismiss the dialog once done
-				pDialog.dismiss();
-			}
-
+			return null;
 		}
 
-		public void onConnectionFailed(ConnectionResult arg0) {
-			// TODO Auto-generated method stub
-			
+		/**
+		 * After completing background task Dismiss the progress dialog
+		 * **/
+		protected void onPostExecute(String file_url) {
+			// dismiss the dialog once done
+			pDialog.dismiss();
 		}
 
-		public void onConnected(Bundle arg0) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		public void onConnectionSuspended(int arg0) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void onClick(View v) {
-			// TODO Auto-generated method stub
-			
-		}
 	}
+
+	public void onConnectionFailed(ConnectionResult arg0) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void onConnected(Bundle arg0) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void onConnectionSuspended(int arg0) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+
+	}
+}

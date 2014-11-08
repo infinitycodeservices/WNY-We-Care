@@ -36,7 +36,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 	public String strUid;
 
 	// url to create new user
-	private static String url_create_user = "http://infinitycodeservices.com/create_user.php";
+	private static String url_create_user = "http://infinitycodeservices.com/get_userid_by_email.php";
 
 	// JSON Node names
 	private static final String TAG_SUCCESS = "success";
@@ -114,8 +114,15 @@ public class LoginActivity extends Activity implements OnClickListener {
 				if (success == 1) {
 					Log.d("Successfully Login!", json.toString());
 					// successfully created user
-					Intent i = new Intent(getApplicationContext(), MainActivity.class);
-					startActivity(i);
+					 //SAVE
+                    		SharedPreferences ui = getSharedPreferences("UserInfo", MODE_PRIVATE);
+                		SharedPreferences.Editor edUi = ui.edit();
+                    		edUi.putString("uid", strUid);
+                    		edUi.putString("email", email);
+                		edUi.commit();
+
+                	 	startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                		finish();
 
 					// closing this screen
 					finish();

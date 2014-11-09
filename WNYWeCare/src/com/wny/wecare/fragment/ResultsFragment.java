@@ -29,6 +29,9 @@ public class ResultsFragment extends ListFragment {
 		
 	private GoogleMap map;
 	
+	//Create map bounds for zoom
+	LatLngBounds.Builder builder = new LatLngBounds.Builder();
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -53,8 +56,8 @@ public class ResultsFragment extends ListFragment {
 		map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
 				.getMap();
 		map.setMapType(GoogleMap.MAP_TYPE_HYBRID);
-		//Create map bounds for zoom
-		LatLngBounds.Builder builder = new LatLngBounds.Builder();
+		
+		
 
 		//Add markers to the map from resultsList
 		for (int i = 0; i < resultsList.size(); i++)	{
@@ -68,14 +71,19 @@ public class ResultsFragment extends ListFragment {
 			builder.include(m.getPosition());
 		}
 		
-		// Set map camera to fit bounds
-		LatLngBounds bounds = builder.build();
-		int padding = 0; // offset from edges of the map in pixels
-		CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
-		map.animateCamera(cu);
+		map.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback() {
+		    @Override
+		    public void onMapLoaded() {
+		    	LatLngBounds bounds = builder.build();
+		        map.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 0));
+		    }
+		});
 
 		return rootView;
+		
 	}
+	
+	
 	
 	public void onListFragmentItemClick(int position)	{
 		

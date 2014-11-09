@@ -26,7 +26,9 @@ import android.widget.SimpleAdapter;
 public class ResultsFragment extends ListFragment {
 
 	ArrayList<Map<String, String>> resultsList = new ArrayList<Map<String, String>>();
-		
+	
+	private ListView mListView;
+	
 	private GoogleMap map;
 	
 	//Create map bounds for zoom
@@ -41,16 +43,16 @@ public class ResultsFragment extends ListFragment {
 
 		View rootView = inflater.inflate(R.layout.fragment_results, container, false);
 
-		/*//Build listView from results
-		ListView lv =(ListView) getActivity().findViewById(android.R.id.list);
+		//Build listView from results
+		mListView =(ListView)rootView.findViewById(android.R.id.list);
 
-		ListAdapter adapter = new SimpleAdapter(getActivity(), resultsList,
-				R.layout.custom_row_view, new String[] { resultsList.get(i).get("AgencyID"), resultsList.get(i).get("AgencyName"),
+		ListAdapter adapter = new SimpleAdapter(rootView.getContext(), resultsList,
+				R.layout.custom_row_view, new String[] { "AgencyID", "AgencyName",
 		"Address1" }, new int[] { R.id.text1, R.id.text2,
 			R.id.text3 });
 
 		// updating listview
-		setListAdapter(adapter);*/
+		setListAdapter(adapter);
 
 		//Setup embedded Google Map fragment
 		map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))

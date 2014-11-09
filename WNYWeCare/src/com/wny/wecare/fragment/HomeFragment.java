@@ -247,7 +247,7 @@ public class HomeFragment extends Fragment implements OnItemSelectedListener, On
 	
 	private void agencySearch(double lat, double lng, int radius) {
 		// Setting the URL for the Search by Zip
-				String url_search_agency = "http://www.infinitycodeservices.com/get_agency_by_zip.php";
+				String url_search_agency = "http://www.infinitycodeservices.com/get_agency_by_gps.php";
 				// Building parameters for the search
 				List<NameValuePair> params = new ArrayList<NameValuePair>();
 				params.add(new BasicNameValuePair("lat", Double.toString(lat)));

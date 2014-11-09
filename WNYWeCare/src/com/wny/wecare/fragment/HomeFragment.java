@@ -29,6 +29,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -128,7 +129,7 @@ public class HomeFragment extends Fragment implements OnItemSelectedListener, On
 			mListener.onFragmentButton();
 			break;
 		case R.id.zip_search:
-			String strZip = v.findViewById(R.id.txt_zip).toString();
+			String strZip  = ((EditText) v.findViewById(R.id.txt_zip)).getText().toString().trim();
 			int zip = Integer.parseInt(strZip);
 			agencySearch(zip);
 			mListener.onFragmentButton();

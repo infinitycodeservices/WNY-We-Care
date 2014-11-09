@@ -25,7 +25,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.gms.common.ConnectionResult;
 import com.wny.wecare.handler.JSONParser;
 
 
@@ -60,6 +59,8 @@ public class LoginActivity extends Activity implements OnClickListener {
 
 		// button click event
 		btnCreateUser.setOnClickListener(new View.OnClickListener() {
+			
+			
 
 			@Override
 			public void onClick(View view) {
@@ -99,7 +100,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 			// Setup ArrayList from main activity to store results
 			ArrayList<Map<String, String>> emailList = new ArrayList<Map<String,  String>>();
            
-            String email = findViewById(R.id.email).toString();
+            String email = ((EditText) findViewById(R.id.email)).getText().toString().trim();
            
             // Building Parameters
 			List<NameValuePair> params = new ArrayList<NameValuePair>();

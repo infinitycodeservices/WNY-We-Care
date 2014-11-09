@@ -18,10 +18,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 
 public class ResultsFragment extends Fragment {
 	
 	ArrayList<Map<String, String>> resultsList = new ArrayList<Map<String, String>>();
+	
 	private GoogleMap map;
 	
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -35,8 +37,14 @@ public class ResultsFragment extends Fragment {
 		//Build listView from results
 		ListView lv =(ListView) getActivity().findViewById(R.id.listView2);
 		
-		ArrayAdapter adapter = new ArrayAdapter(
-                getActivity(), R.layout.fragment_results, resultsList);
+		SimpleAdapter adapter = new SimpleAdapter(
+				this.getActivity(),
+				resultsList,
+				R.layout.custom_row_view,
+				new String[] {"AgencyName","Address1"},
+				new int[] {R.id.text1,R.id.text2,}
+
+				);
         // updating listview
         lv.setAdapter(adapter);
         

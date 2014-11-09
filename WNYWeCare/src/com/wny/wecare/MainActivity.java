@@ -3,7 +3,6 @@ package com.wny.wecare;
 
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
 import android.annotation.TargetApi;
@@ -29,6 +28,7 @@ import com.wny.wecare.fragment.OnFragmentInteractionListener;
 import com.wny.wecare.fragment.ResultsFragment;
 import com.wny.wecare.adapter.NavDrawerListAdapter;
 import com.wny.wecare.fragment.AboutUsFragment;
+import com.wny.wecare.fragment.DetailsFragment;
 import com.wny.wecare.fragment.FavoritesFragment;
 import com.wny.wecare.fragment.HomeFragment;
 import com.wny.wecare.fragment.QuickFindFragment;
@@ -283,6 +283,14 @@ public class MainActivity extends Activity implements OnFragmentInteractionListe
 		FragmentManager fm = getFragmentManager();
 		fm.beginTransaction()
 			.replace(R.id.frame_container, new ResultsFragment()).addToBackStack(null).commit();
+	}
+	
+	@Override
+	public void onDetailsButton(String agid) {
+		// TODO Auto-generated method stub
+		FragmentManager fm = getFragmentManager();
+		fm.beginTransaction()
+			.replace(R.id.frame_container, new DetailsFragment(agid)).addToBackStack(null).commit();
 	}
 	
 	

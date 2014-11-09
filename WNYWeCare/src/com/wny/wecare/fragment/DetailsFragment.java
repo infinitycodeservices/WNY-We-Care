@@ -1,5 +1,17 @@
 package com.wny.wecare.fragment;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.Fragment;
 import android.content.Intent;
 import android.net.Uri;
@@ -13,23 +25,65 @@ import android.widget.ImageView;
 
 import com.wny.wecare.MainActivity;
 import com.wny.wecare.R;
+import com.wny.wecare.handler.JSONParser;
 
 public class DetailsFragment extends Fragment implements OnClickListener {
-	
+
+	public DetailsFragment(String agid) {
+		// Create JSON Parser object
+		JSONParser jParser = new JSONParser();
+
+		// Create array to store details
+		ArrayList<Map<String, String>> detailsArray = new ArrayList<Map<String,  String>>();
+
+		// Setting the URL for Agency by ID
+		String url_search_agency = "http://www.infinitycodeservices.com/get_agency_by_id.php";
+
+		// Building parameters for the search
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("AgencyID", agid));
+
+		// Getting JSON string from URL
+		JSONArray json = jParser.getJSONFromUrl(url_search_agency, params);
+
+		for (int i = 0; i < json.length(); i++)	{
+			HashMap<String, String> map = new HashMap<String, String>();
+
+			try	{
+				JSONObject c = (JSONObject) json.get(i);
+				//Fill map
+				Iterator iter = c.keys();
+				while(iter.hasNext())	{
+					String currentKey = (String) iter.next();
+					map.put(currentKey, c.getString(currentKey));
+				}
+				detailsArray.add(map);
+
+			}
+			catch (JSONException e) {
+				e.printStackTrace();
+
+			}
+
+		};
+
+	}
+
+
 	@Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
- 
-        View rootView = inflater.inflate(R.layout.fragment_details, container, false);
-         
-        return rootView;
-    }
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+
+		View rootView = inflater.inflate(R.layout.fragment_details, container, false);
+
+		return rootView;
+	}
 
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
-	
+
+
 }

@@ -33,7 +33,7 @@ public class ResultsFragment extends ListFragment {
 		//Get search results from stored ArrayList
 		resultsList = MainActivity.getResultsList();
 
-		//Build listView from results
+		/*//Build listView from results
 		ListView lv =(ListView) getActivity().findViewById(android.R.id.list);
 
 		ListAdapter adapter = new SimpleAdapter(getActivity(), resultsList,
@@ -42,7 +42,7 @@ public class ResultsFragment extends ListFragment {
 			R.id.text3 });
 
 		// updating listview
-		setListAdapter(adapter);
+		setListAdapter(adapter);*/
 
 		//Setup embedded Google Map fragment
 		map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
@@ -61,6 +61,10 @@ public class ResultsFragment extends ListFragment {
 		}
 
 		return rootView;
+	}
+	
+	public void onListFragmentItemClick(int position)	{
+		
 	}
 
 }

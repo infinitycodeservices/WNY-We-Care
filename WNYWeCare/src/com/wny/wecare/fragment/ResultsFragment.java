@@ -45,7 +45,7 @@ public class ResultsFragment extends ListFragment {
 		ListView lv =(ListView) getActivity().findViewById(android.R.id.list);
 
 		ListAdapter adapter = new SimpleAdapter(getActivity(), resultsList,
-				R.layout.custom_row_view, new String[] { "AgencyID", "AgencyName",
+				R.layout.custom_row_view, new String[] { resultsList.get(i).get("AgencyID"), resultsList.get(i).get("AgencyName"),
 		"Address1" }, new int[] { R.id.text1, R.id.text2,
 			R.id.text3 });
 

@@ -1955,6 +1955,9 @@ containing a value of this type.
         public static final int progress_horizontal=0x7f0b0005;
         public static final int radio=0x7f0b004e;
         public static final int radioButton=0x7f0b00a9;
+        public static final int ragaddr=0x7f0b007a;
+        public static final int ragid=0x7f0b0078;
+        public static final int ragname=0x7f0b0079;
         public static final int rate=0x7f0b00aa;
         public static final int rate_button=0x7f0b00ab;
         public static final int rate_icon=0x7f0b0094;
@@ -1990,9 +1993,6 @@ containing a value of this type.
         public static final int t_bg=0x7f0b00bf;
         public static final int tabMode=0x7f0b0013;
         public static final int terrain=0x7f0b0027;
-        public static final int text1=0x7f0b0078;
-        public static final int text2=0x7f0b0079;
-        public static final int text3=0x7f0b007a;
         public static final int textView=0x7f0b009c;
         public static final int textView10=0x7f0b00a2;
         public static final int textView11=0x7f0b00a3;

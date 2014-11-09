@@ -1,6 +1,8 @@
 package com.wny.wecare.fragment;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.google.android.gms.maps.CameraUpdate;
@@ -25,6 +27,8 @@ import android.widget.SimpleAdapter;
 
 public class ResultsFragment extends ListFragment {
 
+	private OnFragmentInteractionListener mListener;
+	
 	ArrayList<Map<String, String>> resultsList = new ArrayList<Map<String, String>>();
 	
 	private ListView mListView;
@@ -40,16 +44,30 @@ public class ResultsFragment extends ListFragment {
 		
 		//Get search results from stored ArrayList
 		resultsList = MainActivity.getResultsList();
+		
+		// Setup ArrayList<Map> to populate listView
+		List<Map> data = new ArrayList<Map>();
+				
+		// Load required fields from resultsList
+		for (int i = 0; i < resultsList.size(); i++)	{
+			Map dmap = new HashMap();
+			dmap.put("agencyID", resultsList.get(i).get("AgencyID"));
+			dmap.put("agencyName", resultsList.get(i).get("AgencyName"));
+			dmap.put("address", resultsList.get(i).get("Address1") + " " + 
+					resultsList.get(i).get("City") + " " + resultsList.get(i).get("State") + ", " +
+					resultsList.get(i).get("Zip"));
+			data.add(dmap);
+		}
 
 		View rootView = inflater.inflate(R.layout.fragment_results, container, false);
 
 		//Build listView from results
 		mListView =(ListView)rootView.findViewById(android.R.id.list);
 
-		ListAdapter adapter = new SimpleAdapter(rootView.getContext(), resultsList,
-				R.layout.custom_row_view, new String[] { "AgencyID", "AgencyName",
-		"Address1" }, new int[] { R.id.text1, R.id.text2,
-			R.id.text3 });
+		ListAdapter adapter = new SimpleAdapter(rootView.getContext(), (List<? extends Map<String, ?>>) data,
+				R.layout.custom_row_view, new String[] { "agencyID", "agencyName",
+		"address" }, new int[] { R.id.ragid, R.id.ragname,
+			R.id.ragaddr });
 
 		// updating listview
 		setListAdapter(adapter);
@@ -77,7 +95,7 @@ public class ResultsFragment extends ListFragment {
 		    @Override
 		    public void onMapLoaded() {
 		    	LatLngBounds bounds = builder.build();
-		        map.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 0));
+		        map.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 50));
 		    }
 		});
 
@@ -85,7 +103,13 @@ public class ResultsFragment extends ListFragment {
 		
 	}
 	
-	
+	@Override
+	public void onListItemClick(ListView l, View v, int position, long id) {    
+
+		String detailID = (String) getListAdapter().getItem(position).toString();
+		mListener.onDetailsButton(detailID);
+
+	}
 	
 	public void onListFragmentItemClick(int position)	{
 		

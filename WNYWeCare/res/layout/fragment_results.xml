@@ -17,7 +17,6 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_alignTop="@+id/section_label"
         android:layout_toEndOf="@+id/section_label"
         android:layout_toRightOf="@+id/section_label"
         android:orientation="vertical"
@@ -33,24 +32,20 @@
                 android:id="@+id/map"
                 android:name="com.google.android.gms.maps.MapFragment"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="200dp"
+                android:layout_weight="0.45" />
         </LinearLayout>
 
         <ListView
             android:id="@id/android:list"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight="2"
-            android:background="#000fff"
+            android:layout_height="178dp"
+            android:layout_weight="3.49"
+            android:background="@color/blue"
             android:drawSelectorOnTop="false" >
+
         </ListView>
 
-        <TextView
-            android:id="@id/android:empty"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:background="#FFff00"
-            android:text="No data" />
     </LinearLayout>
 
 </RelativeLayout>

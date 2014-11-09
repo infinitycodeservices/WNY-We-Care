@@ -119,6 +119,8 @@ public class LoginActivity extends FragmentActivity implements OnClickListener {
 			}
 
 		});
+		
+		
 
 
 

@@ -14,16 +14,11 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnKeyListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -31,9 +26,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import com.wny.wecare.MainActivity;
 import com.wny.wecare.R;
 import com.wny.wecare.handler.JSONParser;
@@ -44,6 +36,7 @@ public class HomeFragment extends Fragment implements OnItemSelectedListener, On
 
 	private Spinner spinner;
 	private Button btnSubmit;
+	private Button zipSubmit;
 	
 	private static final String[] list={"Alden", "Amherst", "Angola",
 		"Blasdell", "Boston", "Bowmansville", "Buffalo", "Cheektowaga", "Clarence",
@@ -71,6 +64,9 @@ public class HomeFragment extends Fragment implements OnItemSelectedListener, On
 		btnSubmit.setOnClickListener(this);
 		spinner =(Spinner)rootView.findViewById(R.id.spinner);
 		spinner.setOnItemSelectedListener(this);
+		
+		zipSubmit = (Button) rootView.findViewById(R.id.zip_search);
+		zipSubmit.setOnClickListener(this);
 
 		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item,list);
 		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

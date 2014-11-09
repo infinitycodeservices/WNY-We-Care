@@ -34,7 +34,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.wny.wecare.CustomOnItemSelectedListener;
 import com.wny.wecare.MainActivity;
 import com.wny.wecare.R;
 import com.wny.wecare.handler.JSONParser;
@@ -46,19 +45,6 @@ public class HomeFragment extends Fragment implements OnItemSelectedListener, On
 	private Spinner spinner;
 	private Button btnSubmit;
 	
-
-	// JSON Node names
-
-	private static final String AGENCY = "AgencyName";
-	private static final String AID = "AgencyID";
-	private static final String ADDR1 = "Address1";
-	private static final String ADDR2 = "Addr2";
-	private static final String CITY = "City";
-	private static final String STATE = "State";
-	private static final String ZIP = "Zip";
-	private static final String LAT = "Lat";
-	private static final String LNG = "Lng";
-
 	private static final String[] list={"Alden", "Amherst", "Angola",
 		"Blasdell", "Boston", "Bowmansville", "Buffalo", "Cheektowaga", "Clarence",
 		"Depew", "Derby", "East Aurora", "Eden", "Elma", "Getzville", "Gowanda",

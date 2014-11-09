@@ -3,11 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context=".SearchResults$PlaceholderFragment">
+    tools:context=".SearchResults$PlaceholderFragment" >
 
     <TextView
         android:id="@+id/section_label"
@@ -15,36 +15,42 @@
         android:layout_height="wrap_content" />
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_alignTop="@+id/section_label"
-        android:layout_toRightOf="@+id/section_label"
         android:layout_toEndOf="@+id/section_label"
-        android:weightSum="1">
+        android:layout_toRightOf="@+id/section_label"
+        android:orientation="vertical"
+        android:weightSum="1" >
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.40">
+            android:layout_weight="0.40"
+            android:orientation="vertical" >
 
             <fragment
                 android:id="@+id/map"
+                android:name="com.google.android.gms.maps.MapFragment"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:name="com.google.android.gms.maps.MapFragment"/>
+                android:layout_height="match_parent" />
+        </LinearLayout>
 
-            </LinearLayout>
+        <ListView
+            android:id="@id/android:list"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="2"
+            android:background="#000fff"
+            android:drawSelectorOnTop="false" >
+        </ListView>
 
-
-
-            <ListView
-                android:layout_width="fill_parent"
-                android:layout_height="0dp"
-                android:id="@+id/listView2"
-                android:layout_weight="1.21"/>
-
+        <TextView
+            android:id="@id/android:empty"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="#FFff00"
+            android:text="No data" />
     </LinearLayout>
 
 </RelativeLayout>

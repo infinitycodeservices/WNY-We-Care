@@ -21,6 +21,7 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.text.Editable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -124,8 +125,8 @@ public class HomeFragment extends Fragment implements OnItemSelectedListener, On
 			mListener.onFragmentButton();
 			break;
 		case R.id.zip_search:
-			String strZip  = ((EditText) v.findViewById(R.id.txt_zip)).getText().toString().trim();
-			int zip = Integer.parseInt(strZip);
+			Editable strZip  = ((EditText) v.findViewById(R.id.txt_zip)).getText();
+			int zip = Integer.parseInt(strZip.toString());
 			agencySearch(zip);
 			mListener.onFragmentButton();
 			break;
@@ -135,7 +136,7 @@ public class HomeFragment extends Fragment implements OnItemSelectedListener, On
 			     List<Address> user = null;
 			     double lat = 0;
 			     double lng = 0;
-			     int radius = 0;
+			     int radius = 5;
 
 			    LocationManager lm = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
 

@@ -37,12 +37,14 @@ import com.wny.wecare.model.NavDrawerItem;
 
 
 public class MainActivity extends Activity implements OnFragmentInteractionListener {
-	
+
 	protected static final String EXTRA_FACEBOOK_USER = "facebook_user";
-	
+
 	// array to store search results for use in multiple fragments
-		protected static ArrayList<Map<String, String>> resultsList = null;
+	protected static ArrayList<Map<String, String>> resultsList = null;
 	
+	protected static String detailsID = "";
+
 	private DrawerLayout mDrawerLayout;
 	private ListView mDrawerList;
 	private ActionBarDrawerToggle mDrawerToggle;
@@ -59,10 +61,10 @@ public class MainActivity extends Activity implements OnFragmentInteractionListe
 
 	private ArrayList<NavDrawerItem> navDrawerItems;
 	private NavDrawerListAdapter adapter;
-	
+
 
 	@TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -70,17 +72,17 @@ public class MainActivity extends Activity implements OnFragmentInteractionListe
 		super.onCreate(savedInstanceState);
 		StrictMode.ThreadPolicy policy = new StrictMode.
 				ThreadPolicy.Builder().permitAll().build();
-				StrictMode.setThreadPolicy(policy);
-		 FragmentManager fm = getFragmentManager();
-		    fm.addOnBackStackChangedListener(new OnBackStackChangedListener() {
-		    	
-		        @Override
-		        public void onBackStackChanged() {
-		            if(getFragmentManager().getBackStackEntryCount() == 0) finish();
-		        }
-		    });
-			
-			
+		StrictMode.setThreadPolicy(policy);
+		FragmentManager fm = getFragmentManager();
+		fm.addOnBackStackChangedListener(new OnBackStackChangedListener() {
+
+			@Override
+			public void onBackStackChanged() {
+				if(getFragmentManager().getBackStackEntryCount() == 0) finish();
+			}
+		});
+
+
 
 		mTitle = mDrawerTitle = getTitle();
 
@@ -107,8 +109,8 @@ public class MainActivity extends Activity implements OnFragmentInteractionListe
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(3, -1)));
 		// About Us
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(4, -1)));
-		
-		
+
+
 
 		// Recycle the typed array
 		navMenuIcons.recycle();
@@ -128,7 +130,7 @@ public class MainActivity extends Activity implements OnFragmentInteractionListe
 				R.drawable.ic_drawer, //nav menu toggle icon
 				R.string.app_name, // nav drawer open - description for accessibility
 				R.string.app_name // nav drawer close - description for accessibility
-		) {
+				) {
 			public void onDrawerClosed(View view) {
 				getActionBar().setTitle(mTitle);
 				// calling onPrepareOptionsMenu() to show action bar icons
@@ -153,7 +155,7 @@ public class MainActivity extends Activity implements OnFragmentInteractionListe
 	 * Slide menu item click listener
 	 * */
 	private class SlideMenuClickListener implements
-			ListView.OnItemClickListener {
+	ListView.OnItemClickListener {
 		@Override
 		public void onItemClick(AdapterView<?> parent, View view, int position,
 				long id) {
@@ -210,7 +212,7 @@ public class MainActivity extends Activity implements OnFragmentInteractionListe
 		case 2:
 			fragment = new FavoritesFragment();
 			break;
-		
+
 		case 3:
 			fragment = new SettingsFragment();
 			break;
@@ -225,7 +227,7 @@ public class MainActivity extends Activity implements OnFragmentInteractionListe
 		if (fragment != null) {
 			FragmentManager fragmentManager = getFragmentManager();
 			fragmentManager.beginTransaction()
-					.replace(R.id.frame_container, fragment).commit();
+			.replace(R.id.frame_container, fragment).commit();
 
 			// update selected item and title, then close the drawer
 			mDrawerList.setItemChecked(position, true);
@@ -262,19 +264,27 @@ public class MainActivity extends Activity implements OnFragmentInteractionListe
 		// Pass any configuration change to the drawer toggls
 		mDrawerToggle.onConfigurationChanged(newConfig);
 	}
-	
+
 	@Override
 	public void onBackPressed() {
-	    moveTaskToBack(true);
-	    finish();
+		moveTaskToBack(true);
+		finish();
 	}
 
 	public static ArrayList<Map<String, String>> getResultsList()	{
 		return resultsList;
 	}
-	
+
 	public static void setResultsList(ArrayList<Map<String, String>> arrList)	{
 		MainActivity.resultsList = arrList;
+	}
+	
+	public static String getDetailsID()	{
+		return detailsID;
+	}
+	
+	public static void setDetailsID(String detid)	{
+		MainActivity.detailsID = detid;
 	}
 
 	@Override
@@ -282,18 +292,18 @@ public class MainActivity extends Activity implements OnFragmentInteractionListe
 		// TODO Auto-generated method stub
 		FragmentManager fm = getFragmentManager();
 		fm.beginTransaction()
-			.replace(R.id.frame_container, new ResultsFragment()).addToBackStack(null).commit();
+		.replace(R.id.frame_container, new ResultsFragment()).addToBackStack(null).commit();
 	}
-	
+
 	@Override
-	public void onDetailsButton(String agid) {
+	public void onDetailsButton() {
 		// TODO Auto-generated method stub
 		FragmentManager fm = getFragmentManager();
 		fm.beginTransaction()
-			.replace(R.id.frame_container, new DetailsFragment(agid)).addToBackStack(null).commit();
+		.replace(R.id.frame_container, new DetailsFragment()).addToBackStack(null).commit();
 	}
-	
-	
-	}
-	
-	
+
+
+}
+
+

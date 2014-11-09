@@ -4,6 +4,6 @@ public interface OnFragmentInteractionListener {
 
 	void onFragmentButton();
 	
-	void onDetailsButton(String agid);
+	void onDetailsButton();
 
 }

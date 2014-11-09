@@ -16,6 +16,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.wny.wecare.MainActivity;
 import com.wny.wecare.R;
 
+import android.app.Activity;
 import android.app.ListFragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -24,12 +25,16 @@ import android.view.ViewGroup;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 public class ResultsFragment extends ListFragment {
 
 	private OnFragmentInteractionListener mListener;
 	
 	ArrayList<Map<String, String>> resultsList = new ArrayList<Map<String, String>>();
+	
+	// Setup ArrayList<Map> to populate listView
+	List<Map> data = new ArrayList<Map>();
 	
 	private ListView mListView;
 	
@@ -44,9 +49,6 @@ public class ResultsFragment extends ListFragment {
 		
 		//Get search results from stored ArrayList
 		resultsList = MainActivity.getResultsList();
-		
-		// Setup ArrayList<Map> to populate listView
-		List<Map> data = new ArrayList<Map>();
 				
 		// Load required fields from resultsList
 		for (int i = 0; i < resultsList.size(); i++)	{
@@ -77,8 +79,6 @@ public class ResultsFragment extends ListFragment {
 				.getMap();
 		map.setMapType(GoogleMap.MAP_TYPE_HYBRID);
 		
-		
-
 		//Add markers to the map from resultsList
 		for (int i = 0; i < resultsList.size(); i++)	{
 			Double latitude = Double.parseDouble(resultsList.get(i).get("Lat"));
@@ -103,11 +103,27 @@ public class ResultsFragment extends ListFragment {
 		
 	}
 	
+	// Check if parent activity implements the interface
+		@Override
+		public void onAttach(Activity activity) {
+			super.onAttach(activity);
+			try {
+				mListener =
+						(OnFragmentInteractionListener)  activity;
+			} catch (ClassCastException e) {
+				throw new ClassCastException(activity.toString()
+						+ " must implement OnFragmentInteractionListener");
+			}
+		}
+	
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {    
 
-		String detailID = (String) getListAdapter().getItem(position).toString();
-		mListener.onDetailsButton(detailID);
+		int new_position = position;
+		String detailID = data.get(new_position).get("agencyID").toString();
+		Toast.makeText(v.getContext(), 
+                "AgencyID: " + detailID, Toast.LENGTH_LONG).show();
+		mListener.onDetailsButton();
 
 	}
 	

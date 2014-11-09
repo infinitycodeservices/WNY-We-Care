@@ -13,15 +13,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Fragment;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.wny.wecare.MainActivity;
@@ -31,18 +27,21 @@ import com.wny.wecare.handler.JSONParser;
 public class DetailsFragment extends Fragment implements OnClickListener {
 
 	// Create array to store details
-		ArrayList<Map<String, String>> detailsArray = new ArrayList<Map<String,  String>>();
-	
-	public DetailsFragment(String agid) {
-		// Create JSON Parser object
-		JSONParser jParser = new JSONParser();
+	ArrayList<Map<String, String>> detailsArray = new ArrayList<Map<String,  String>>();
 
-		// Setting the URL for Agency by ID
-		String url_search_agency = "http://www.infinitycodeservices.com/get_agency_by_id.php";
 
+	// Create JSON Parser object
+	JSONParser jParser = new JSONParser();
+
+	// Setting the URL for Agency by ID
+	String url_search_agency = "http://www.infinitycodeservices.com/get_agency_by_id.php";
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
 		// Building parameters for the search
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
-		params.add(new BasicNameValuePair("AgencyID", agid));
+		params.add(new BasicNameValuePair("AgencyID", MainActivity.getDetailsID()));
 
 		// Getting JSON string from URL
 		JSONArray json = jParser.getJSONFromUrl(url_search_agency, params);
@@ -68,15 +67,8 @@ public class DetailsFragment extends Fragment implements OnClickListener {
 
 		};
 
-	}
-
-
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
-
 		View rootView = inflater.inflate(R.layout.fragment_details, container, false);
-		
+
 		// Set TextView variables to populate screen from detailsArray
 		TextView agname = (TextView) rootView.findViewById(R.id.agencynm);
 		TextView agaddr = (TextView) rootView.findViewById(R.id.address);
@@ -87,7 +79,7 @@ public class DetailsFragment extends Fragment implements OnClickListener {
 		TextView agcontact = (TextView) rootView.findViewById(R.id.contact);
 		TextView agages = (TextView) rootView.findViewById(R.id.ages);
 		TextView agcapty = (TextView) rootView.findViewById(R.id.capacity);
-		
+
 		// Fill TextViews from detailsArray
 		agname.setText(detailsArray.get(0).get("AgencyName").toString());
 		agaddr.setText(detailsArray.get(0).get("Address1").toString());
@@ -96,9 +88,9 @@ public class DetailsFragment extends Fragment implements OnClickListener {
 		agzip.setText(detailsArray.get(0).get("Zip").toString());
 		agphone.setText(detailsArray.get(0).get("Phone").toString());
 		agcontact.setText(detailsArray.get(0).get("ContactFn").toString() + " " + 
-							detailsArray.get(0).get("ContactLn").toString());
+				detailsArray.get(0).get("ContactLn").toString());
 		agages.setText(detailsArray.get(0).get("MinAge").toString() + " " +
-							detailsArray.get(0).get("MaxAge").toString());
+				detailsArray.get(0).get("MaxAge").toString());
 		agcapty.setText(detailsArray.get(0).get("Capacity").toString());
 
 		return rootView;

@@ -91,8 +91,8 @@ public class HomeFragment extends Fragment implements OnItemSelectedListener, On
 		zipSubmit = (Button) rootView.findViewById(R.id.zip_search);
 		zipSubmit.setOnClickListener(this);
 
-		btnLocation = (Button) rootView.findViewById(R.id.btn_location);
-		btnLocation.setOnClickListener(this);
+		//btnLocation = (Button) rootView.findViewById(R.id.btn_location);
+		//btnLocation.setOnClickListener(this);
 
 		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item,list);
 		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

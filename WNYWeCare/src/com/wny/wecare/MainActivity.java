@@ -44,7 +44,7 @@ public class MainActivity extends Activity implements OnFragmentInteractionListe
 	// array to store search results for use in multiple fragments
 	protected static ArrayList<Map<String, String>> resultsList = null;
 	
-	protected static String detailsID = "";
+	protected static String detailsID;
 
 	private DrawerLayout mDrawerLayout;
 	private ListView mDrawerList;

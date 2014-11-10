@@ -16,14 +16,11 @@ import android.app.ListFragment;
 import android.content.SharedPreferences;
 import android.content.Context;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.text.Editable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -66,7 +63,7 @@ public class DetailsFragment extends ListFragment implements OnClickListener {
 		
 		// Building parameters for the search
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
-		params.add(new BasicNameValuePair("AgencyID", MainActivity.getDetailsID()));
+		params.add(new BasicNameValuePair("AgencyID", comments));
 
 		// Getting JSON string from URL
 		JSONArray json = jParser.getJSONFromUrl(url_search_agency, params);

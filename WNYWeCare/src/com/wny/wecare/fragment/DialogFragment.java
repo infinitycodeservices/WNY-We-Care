@@ -104,7 +104,7 @@ public class DialogFragment extends FragmentActivity implements OnClickListener{
 				@Override
 				public void onClick(View v) {
 					// Build parameters to create feedback
-					/*String uid = PreferenceManager.getDefaultSharedPreferences(getActivity()).getString("uid", "");;
+					String uid = PreferenceManager.getDefaultSharedPreferences(getActivity()).getString("uid", "");;
 					String comments = MainActivity.getDetailsID();
 					String feedbk = (String) message.getText();
 					String rating = dialog.findViewById(R.id.rating).toString();
@@ -120,7 +120,7 @@ public class DialogFragment extends FragmentActivity implements OnClickListener{
 						Toast.makeText(getActivity(), "Successfully added feedback", Toast.LENGTH_LONG).show();
 					} else	{
 						Toast.makeText(getActivity(), "Feedback not added", Toast.LENGTH_LONG).show();
-					}*/
+					}
 					dismiss();
 				}
 			});

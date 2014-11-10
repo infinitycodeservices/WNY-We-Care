@@ -12,6 +12,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.FragmentTransaction;
 import android.app.ListFragment;
 import android.content.SharedPreferences;
 import android.content.Context;
@@ -116,8 +117,8 @@ public class DetailsFragment extends ListFragment implements OnClickListener {
 		
 		agencyComments();
 		
-		/*btnComment = (Button) rootView.findViewById(R.id.cmntButton);
-		btnComment.setOnClickListener(this);*/
+		btnComment = (Button) rootView.findViewById(R.id.cmntButton);
+		btnComment.setOnClickListener(this);
 		
 		btnFavorite = (Button) rootView.findViewById(R.id.favButton);
 		btnFavorite.setOnClickListener(this);
@@ -138,11 +139,10 @@ public class DetailsFragment extends ListFragment implements OnClickListener {
 		SharedPreferences ui = getActivity().getPreferences(Context.MODE_PRIVATE);
 		String uid = ui.getString("uid", "");
 		switch (v.getId()){
-		/*case R.id.cmntButton:
-			String town = (String) spinner.getSelectedItem().toString();
-			agencySearch(town);
-			mListener.onFragmentButton();
-			break;*/
+		case R.id.cmntButton:
+			CustomDialogFragment myDiag = new CustomDialogFragment();
+			 myDiag.show(getFragmentManager(), "Diag");
+			break;
 		case R.id.favButton:
 			List<NameValuePair> params = new ArrayList<NameValuePair>();
 			params.add(new BasicNameValuePair("AgencyID", comments));

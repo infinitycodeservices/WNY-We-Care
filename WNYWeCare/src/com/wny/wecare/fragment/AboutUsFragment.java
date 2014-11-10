@@ -79,7 +79,7 @@ public class AboutUsFragment extends Fragment implements OnClickListener {
 			break;
 			
 		case R.id.rate_icon:
-			startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/developer?id=InfinityCodeServices")));
+			startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.wny.wecare")));
 			break;
 			
 		case R.id.apps_icon:

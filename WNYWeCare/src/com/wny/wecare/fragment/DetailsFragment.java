@@ -45,7 +45,8 @@ public class DetailsFragment extends ListFragment implements OnClickListener {
 	//Set AgencyID for comments selection
 	String comments = MainActivity.getDetailsID();
 	
-	String uid = PreferenceManager.getDefaultSharedPreferences(getActivity()).getString("uid", "");
+	/*SharedPreferences ui = getActivity().getPreferences(Context.MODE_PRIVATE);
+	String uid = ui.getString("uid", "");*/
 	
 	private Button btnComment;
 	
@@ -159,7 +160,7 @@ public class DetailsFragment extends ListFragment implements OnClickListener {
 			mListener.onFragmentButton();
 			break;*/
 		case R.id.favButton:
-			List<NameValuePair> params = new ArrayList<NameValuePair>();
+			/*List<NameValuePair> params = new ArrayList<NameValuePair>();
 			params.add(new BasicNameValuePair("AgencyID", comments));
 			params.add(new BasicNameValuePair("UserID", uid));
 			
@@ -169,7 +170,7 @@ public class DetailsFragment extends ListFragment implements OnClickListener {
 				Toast.makeText(getActivity(), "Added to Favorites", Toast.LENGTH_LONG).show();
 			} else	{
 				Toast.makeText(getActivity(), "Favorite not added", Toast.LENGTH_LONG).show();
-			}
+			}*/
 		}
 
 	}

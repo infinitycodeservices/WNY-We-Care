@@ -15,6 +15,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -217,7 +218,7 @@ public class LoginActivity extends FragmentActivity implements OnClickListener {
 			strUid = emailList.get(0).get("UserID").toString();
 
 			//SAVE
-			SharedPreferences ui = getSharedPreferences("UserInfo", MODE_PRIVATE);
+			SharedPreferences ui = getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
 			SharedPreferences.Editor edUi = ui.edit();
 			edUi.putString("uid", strUid);
 			edUi.putString("email", email);

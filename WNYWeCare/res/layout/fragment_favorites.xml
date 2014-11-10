@@ -20,8 +20,8 @@
         
         <ListView
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/lv_fav"
+                android:layout_height="0dp"
+                android:id="@id/android:list"
                 android:layout_weight="1.21"/>
 
     </LinearLayout>

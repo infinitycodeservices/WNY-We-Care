@@ -1835,7 +1835,7 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f0b0002;
         public static final int action_menu_presenter=0x7f0b0003;
         public static final int action_mode_close_button=0x7f0b0043;
-        public static final int action_settings=0x7f0b00c2;
+        public static final int action_settings=0x7f0b00c1;
         public static final int activity_chooser_view_content=0x7f0b0044;
         public static final int address=0x7f0b00a1;
         public static final int agencynm=0x7f0b00a0;
@@ -1848,8 +1848,8 @@ containing a value of this type.
         public static final int book_now=0x7f0b0031;
         public static final int bottom=0x7f0b000c;
         public static final int box_count=0x7f0b0009;
-        public static final int btnEmail=0x7f0b00bb;
-        public static final int btn_location=0x7f0b00b1;
+        public static final int btnEmail=0x7f0b00ba;
+        public static final int btn_location=0x7f0b00b0;
         public static final int button=0x7f0b000a;
         public static final int buyButton=0x7f0b002d;
         public static final int buy_now=0x7f0b0032;
@@ -1900,7 +1900,7 @@ containing a value of this type.
         public static final int drawer_layout=0x7f0b005b;
         public static final int dropdown=0x7f0b0020;
         public static final int edit_query=0x7f0b004f;
-        public static final int email=0x7f0b00ba;
+        public static final int email=0x7f0b00b9;
         public static final int end=0x7f0b0022;
         public static final int expand_activities_button=0x7f0b0045;
         public static final int expanded_menu=0x7f0b004b;
@@ -1910,7 +1910,7 @@ containing a value of this type.
         public static final int favButton=0x7f0b00ac;
         public static final int favid=0x7f0b0081;
         public static final int favname=0x7f0b0082;
-        public static final int fbbutton=0x7f0b00bc;
+        public static final int fbbutton=0x7f0b00bb;
         public static final int frame_container=0x7f0b005c;
         public static final int google_content=0x7f0b0091;
         public static final int google_icon=0x7f0b008f;
@@ -1925,7 +1925,7 @@ containing a value of this type.
         public static final int icon=0x7f0b0049;
         public static final int ifRoom=0x7f0b001c;
         public static final int image=0x7f0b0046;
-        public static final int imgProfilePic=0x7f0b00be;
+        public static final int imgProfilePic=0x7f0b00bd;
         public static final int img_indicator=0x7f0b0088;
         public static final int img_indicator1=0x7f0b008e;
         public static final int img_indicator2=0x7f0b0092;
@@ -1934,16 +1934,15 @@ containing a value of this type.
         public static final int img_indicator5=0x7f0b009d;
         public static final int inline=0x7f0b000d;
         public static final int large=0x7f0b0006;
-        public static final int layout=0x7f0b00b9;
+        public static final int layout=0x7f0b00b8;
         public static final int left=0x7f0b0010;
         public static final int listMode=0x7f0b0012;
         public static final int list_item=0x7f0b0048;
         public static final int list_slidermenu=0x7f0b005d;
-        public static final int llProfile=0x7f0b00bd;
-        public static final int logo=0x7f0b00b8;
+        public static final int llProfile=0x7f0b00bc;
+        public static final int logo=0x7f0b00b7;
         public static final int logo_about=0x7f0b0083;
-        public static final int lv_fav=0x7f0b00b0;
-        public static final int map=0x7f0b00b7;
+        public static final int map=0x7f0b00b6;
         public static final int match_parent=0x7f0b002f;
         public static final int message=0x7f0b007d;
         public static final int middle=0x7f0b0023;
@@ -1979,20 +1978,20 @@ containing a value of this type.
         public static final int search_plate=0x7f0b0055;
         public static final int search_src_text=0x7f0b0056;
         public static final int search_voice_btn=0x7f0b005a;
-        public static final int section_label=0x7f0b00b6;
+        public static final int section_label=0x7f0b00b5;
         public static final int selectionDetails=0x7f0b002e;
         public static final int shortcut=0x7f0b004d;
         public static final int showCustom=0x7f0b0016;
         public static final int showHome=0x7f0b0017;
         public static final int showTitle=0x7f0b0018;
         public static final int small=0x7f0b0008;
-        public static final int spinner=0x7f0b00b2;
+        public static final int spinner=0x7f0b00b1;
         public static final int split_action_bar=0x7f0b003d;
         public static final int standard=0x7f0b000b;
         public static final int state=0x7f0b00a3;
         public static final int strict_sandbox=0x7f0b002c;
         public static final int submit_area=0x7f0b0058;
-        public static final int t_bg=0x7f0b00c1;
+        public static final int t_bg=0x7f0b00c0;
         public static final int tabMode=0x7f0b0013;
         public static final int terrain=0x7f0b0027;
         public static final int textView=0x7f0b009f;
@@ -2003,11 +2002,11 @@ containing a value of this type.
         public static final int title=0x7f0b004a;
         public static final int top=0x7f0b000e;
         public static final int top_action_bar=0x7f0b003f;
-        public static final int town_search=0x7f0b00b3;
+        public static final int town_search=0x7f0b00b2;
         public static final int tv_content_about=0x7f0b0084;
-        public static final int txtEmail=0x7f0b00c0;
+        public static final int txtEmail=0x7f0b00bf;
         public static final int txtLabel=0x7f0b00af;
-        public static final int txtName=0x7f0b00bf;
+        public static final int txtName=0x7f0b00be;
         public static final int up=0x7f0b0040;
         public static final int useLogo=0x7f0b0019;
         public static final int vertical=0x7f0b0038;
@@ -2017,8 +2016,8 @@ containing a value of this type.
         public static final int withText=0x7f0b001e;
         public static final int wrap_content=0x7f0b0030;
         public static final int zip=0x7f0b00a4;
-        public static final int zipSpinner=0x7f0b00b4;
-        public static final int zip_search=0x7f0b00b5;
+        public static final int zipSpinner=0x7f0b00b3;
+        public static final int zip_search=0x7f0b00b4;
     }
     public static final class integer {
         /**  The maximum number of action buttons that should be permitted within

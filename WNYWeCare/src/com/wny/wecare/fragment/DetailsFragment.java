@@ -66,7 +66,7 @@ public class DetailsFragment extends ListFragment implements OnClickListener {
 		
 		// Building parameters for the search
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
-		params.add(new BasicNameValuePair("AgencyID", MainActivity.getDetailsID()));
+		params.add(new BasicNameValuePair("AgencyID", comments));
 
 		// Getting JSON string from URL
 		JSONArray json = jParser.getJSONFromUrl(url_search_agency, params);

@@ -18,6 +18,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -32,6 +33,7 @@ import com.facebook.FacebookException;
 import com.facebook.Request;
 import com.facebook.Response;
 import com.facebook.Session;
+import com.facebook.SessionDefaultAudience;
 import com.facebook.SessionState;
 import com.facebook.model.GraphUser;
 import com.facebook.widget.LoginButton;
@@ -63,92 +65,108 @@ public class LoginActivity extends FragmentActivity implements OnClickListener {
 
 	public String strUid;
 	private String TAG = "MainActivity";
+	private Session.StatusCallback statusCallback = new SessionStatusCallback();
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.login_activity);
 
-		LoginButton fbbutton = (LoginButton)
-				findViewById(R.id.fbbutton);
-		fbbutton.setOnErrorListener(new OnErrorListener() {
+		Session session = new Session(getApplicationContext());
+		Session.setActiveSession(session);
+		session.openForRead(new Session.OpenRequest(LoginActivity.this).setDefaultAudience(SessionDefaultAudience.ONLY_ME).setPermissions(Arrays.asList("public_profile", "user_friends", "email")).setCallback(statusCallback));
+		Session.setActiveSession(session);
 
-			@Override
-			public void onError(FacebookException error) {
-				Log.i(TAG, "Error " + error.getMessage());
+		onSessionStateChange();
+	}
 
-			}
+	private class SessionStatusCallback implements Session.StatusCallback {
+		@Override
+		public void call(Session session, SessionState state, Exception exception) {
+			onSessionStateChange();
+		}
+	}
 
-		});
-		// set permission list, Don't forget to add email
-		fbbutton.setReadPermissions(Arrays.asList("public_profile", "user_friends", "email"));
+	private void onSessionStateChange() {
+		Session session = Session.getActiveSession();
+		if(session != null){
+			if (session.isOpened()){
 
-		// session state call back event
-
-		fbbutton.setSessionStatusCallback(new Session.StatusCallback() {
-
-
-
-			//@SuppressWarnings("deprecation")
-			@Override
-
-			public void call(Session session, SessionState state, Exception exception) {
-
-
-
-				if (session.isOpened()) {
-
-					Log.i(TAG,"Access Token"+ session.getAccessToken());
-
-					Request.executeMeRequestAsync(session,
-
-							new Request.GraphUserCallback() {
-
-						@Override
-						public void onCompleted(GraphUser user,Response response) {
-							if (user != null) {
-								Log.i(TAG,"User ID "+ user.getId());
-								Log.i(TAG,"email "+ user.asMap().get("email"));
-							}
-
+				Request getMe = Request.newMeRequest(session, new Request.GraphUserCallback() {
+					@Override
+					public void onCompleted(GraphUser user, Response response) {
+						if(user != null){
+							finish();
 						}
+					}
+				});
+			}
+		}
+	}
 
-					});
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		Session.getActiveSession().onActivityResult(this, requestCode, resultCode, data);
+		if (Session.getActiveSession() != null || Session.getActiveSession().isOpened()){
+			Intent i = new Intent(LoginActivity.this,MainActivity.class);
+			startActivity(i);
+
+
+			LoginButton fbbutton = (LoginButton)
+					findViewById(R.id.fbbutton);
+			fbbutton.setOnErrorListener(new OnErrorListener() {
+
+				@Override
+				public void onError(FacebookException error) {
+					Log.i(TAG, "Error " + error.getMessage());
 
 				}
 
-			}
-
-		});
-		
-		
+			});
 
 
+			// Edit Text
+			inputEmail = (EditText) findViewById(R.id.email);
 
-		// Edit Text
-		inputEmail = (EditText) findViewById(R.id.email);
+			// Create button
+			Button btnCreateUser = (Button) findViewById(R.id.btnEmail);
 
-		// Create button
-		Button btnCreateUser = (Button) findViewById(R.id.btnEmail);
-
-		// button click event
-		btnCreateUser.setOnClickListener(new View.OnClickListener() {
+			// button click event
+			btnCreateUser.setOnClickListener(new View.OnClickListener() {
 
 
 
 
-			@Override
-			public void onClick(View view) {
-				String email=inputEmail.getText().toString();
-				if(checkEmail(email)) {
-					Toast.makeText(LoginActivity.this,"Valid Email Addresss", Toast.LENGTH_SHORT).show();
-					// creating new user in background thread 
-					new CreateNewUser().execute();
-				}       	
-				else
-					Toast.makeText(LoginActivity.this,"Invalid Email Addresss", Toast.LENGTH_SHORT).show();
-			}
-		});
+				@Override
+				public void onClick(View view) {
+					String email=inputEmail.getText().toString();
+					if(checkEmail(email)) {
+						Toast.makeText(LoginActivity.this,"Valid Email Addresss", Toast.LENGTH_SHORT).show();
+
+						/******* Create SharedPreferences *******/
+						SharedPreferences pref = getApplicationContext().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
+						SharedPreferences.Editor editor = pref.edit();
+						/**************** Storing data as KEY/VALUE pair *******************/
+						editor.putString("uid", strUid);
+						editor.putString("email", inputEmail.getText().toString());
+						 // Save the changes in SharedPreferences
+						editor.commit();
+						/**************** Get SharedPreferences data *******************/
+						pref.getString("email", null);
+
+						startActivity(new Intent(LoginActivity.this, MainActivity.class));
+						finish();
+
+						// creating new user in background thread 
+						new CreateNewUser().execute();
+					}       	
+					else
+						Toast.makeText(LoginActivity.this,"Invalid Email Addresss", Toast.LENGTH_SHORT).show();
+				}
+			});
+		}
+
 	}
 	private boolean checkEmail(String email) {
 		return EMAIL_ADDRESS_PATTERN.matcher(email).matches();
@@ -214,18 +232,6 @@ public class LoginActivity extends FragmentActivity implements OnClickListener {
 				}
 
 			};
-			
-			strUid = emailList.get(0).get("UserID").toString();
-
-			//SAVE
-			SharedPreferences ui = getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
-			SharedPreferences.Editor edUi = ui.edit();
-			edUi.putString("uid", strUid);
-			edUi.putString("email", email);
-			edUi.commit();
-
-			startActivity(new Intent(LoginActivity.this, MainActivity.class));
-			finish();
 
 
 			return null;
@@ -247,17 +253,6 @@ public class LoginActivity extends FragmentActivity implements OnClickListener {
 
 	}
 
-	@Override
-
-	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode, resultCode, data);
-		Session.getActiveSession().onActivityResult(this, requestCode, resultCode, data);
-		if (Session.getActiveSession() != null || Session.getActiveSession().isOpened()){
-			Intent i = new Intent(LoginActivity.this,MainActivity.class);
-			startActivity(i);
-		}
-
-	}
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub

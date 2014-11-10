@@ -121,8 +121,7 @@ public class ResultsFragment extends ListFragment {
 
 		int new_position = position;
 		String detailID = data.get(new_position).get("agencyID").toString();
-		Toast.makeText(v.getContext(), 
-                "AgencyID: " + detailID, Toast.LENGTH_LONG).show();
+		MainActivity.setDetailsID(detailID);
 		mListener.onDetailsButton();
 
 	}

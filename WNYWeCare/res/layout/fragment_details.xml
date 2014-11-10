@@ -137,6 +137,7 @@
                     android:id="@+id/textView12"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="0.23"
                     android:text="@string/age_range"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="@color/white" />
@@ -145,6 +146,7 @@
                     android:id="@+id/textView13"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="0.59"
                     android:text="@string/max_capacity"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="@color/white" />
@@ -160,21 +162,22 @@
 
                 <TextView
                     android:id="@+id/ages"
-                    android:layout_width="93dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="90dp"
+                    android:layout_height="41dp"
+                    android:layout_weight="0.55"
                     android:text="Ages"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <TextView
                     android:id="@+id/capacity"
                     android:layout_width="67dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.32"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.31"
                     android:text="Capacity"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <RadioButton
-                    android:id="@+id/radioButton"
+                    android:id="@+id/favButton"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="@string/favorite" />
@@ -207,10 +210,10 @@
                     android:textColor="@color/white" />
 
                 <Button
-                    android:id="@+id/rate_button"
+                    android:id="@+id/cmntButton"
                     style="?android:attr/buttonStyleSmall"
                     android:layout_width="wrap_content"
-                    android:layout_height="29dp"
+                    android:layout_height="match_parent"
                     android:text="@string/rate_btn" />
 
             </LinearLayout>
@@ -219,7 +222,8 @@
         <ListView
             android:layout_width="fill_parent"
             android:layout_height="0dp"
-            android:id="@+id/listView2"
+            android:id="@+id/android:list"
+            android:background="@color/blue"
             android:layout_weight="1.21"/>
 
     </LinearLayout>

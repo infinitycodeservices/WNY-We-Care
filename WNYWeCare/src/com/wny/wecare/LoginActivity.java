@@ -213,6 +213,8 @@ public class LoginActivity extends FragmentActivity implements OnClickListener {
 				}
 
 			};
+			
+			strUid = emailList.get(0).get("UserID").toString();
 
 			//SAVE
 			SharedPreferences ui = getSharedPreferences("UserInfo", MODE_PRIVATE);

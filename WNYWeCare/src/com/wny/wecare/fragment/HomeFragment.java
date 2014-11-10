@@ -47,7 +47,7 @@ public class HomeFragment extends Fragment implements OnItemSelectedListener, On
 	private Button btnSubmit;
 	private Button zipSubmit;
 	private Button btnLocation;
-	
+
 	private static final String[] list={"Alden", "Amherst", "Angola",
 		"Blasdell", "Boston", "Bowmansville", "Buffalo", "Cheektowaga", "Clarence",
 		"Depew", "Derby", "East Aurora", "Eden", "Elma", "Getzville", "Gowanda",
@@ -72,13 +72,13 @@ public class HomeFragment extends Fragment implements OnItemSelectedListener, On
 
 		btnSubmit = (Button) rootView.findViewById(R.id.town_search);
 		btnSubmit.setOnClickListener(this);
-		
+
 		spinner =(Spinner)rootView.findViewById(R.id.spinner);
 		spinner.setOnItemSelectedListener(this);
-		
+
 		zipSubmit = (Button) rootView.findViewById(R.id.zip_search);
 		zipSubmit.setOnClickListener(this);
-		
+
 		btnLocation = (Button) rootView.findViewById(R.id.btn_location);
 		btnLocation.setOnClickListener(this);
 
@@ -130,34 +130,34 @@ public class HomeFragment extends Fragment implements OnItemSelectedListener, On
 			agencySearch(zip);
 			mListener.onFragmentButton();
 			break;
-			case R.id.btn_location:
-				 Geocoder geocoder;
-			     String bestProvider;
-			     List<Address> user = null;
-			     double lat = 0;
-			     double lng = 0;
-			     int radius = 5;
+		case R.id.btn_location:
+			Geocoder geocoder;
+			String bestProvider;
+			List<Address> user = null;
+			double lat = 0;
+			double lng = 0;
+			int radius = 5;
 
-			    LocationManager lm = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+			LocationManager lm = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
 
-			     Criteria criteria = new Criteria();
-			     bestProvider = lm.getBestProvider(criteria, false);
-			     Location location = lm.getLastKnownLocation(bestProvider);
+			Criteria criteria = new Criteria();
+			bestProvider = lm.getBestProvider(criteria, false);
+			Location location = lm.getLastKnownLocation(bestProvider);
 
-			     if (location == null){
-			         Toast.makeText(getActivity(),"Location Not found",Toast.LENGTH_LONG).show();
-			      }else{
-			        geocoder = new Geocoder(getActivity());
-			        try {
-			            user = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
-			        lat=(double)user.get(0).getLatitude();
-			        lng=(double)user.get(0).getLongitude();
-			        System.out.println(" DDD lat: " +lat+",  longitude: "+lng);
+			if (location == null){
+				Toast.makeText(getActivity(),"Location Not found",Toast.LENGTH_LONG).show();
+			}else{
+				geocoder = new Geocoder(getActivity());
+				try {
+					user = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+					lat=(double)user.get(0).getLatitude();
+					lng=(double)user.get(0).getLongitude();
+					System.out.println(" DDD lat: " +lat+",  longitude: "+lng);
 
-			        }catch (Exception e) {
-			                e.printStackTrace();
-			        }
-			    }
+				}catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
 			agencySearch(lat, lng, radius);
 			mListener.onFragmentButton();
 			break;
@@ -188,7 +188,7 @@ public class HomeFragment extends Fragment implements OnItemSelectedListener, On
 
 		for (int i = 0; i < json.length(); i++)	{
 			HashMap<String, String> map = new HashMap<String, String>();
-			
+
 			try	{
 				JSONObject c = (JSONObject) json.get(i);
 				//Fill map
@@ -198,17 +198,17 @@ public class HomeFragment extends Fragment implements OnItemSelectedListener, On
 					map.put(currentKey, c.getString(currentKey));
 				}
 				resultsList.add(map);
-				
+
 			}
 			catch (JSONException e) {
 				e.printStackTrace();
-				
+
 			}
-			
+
 		};
-		
+
 		MainActivity.setResultsList(resultsList);
-		
+
 	}
 
 	public void agencySearch(int zsearch)	{
@@ -223,7 +223,7 @@ public class HomeFragment extends Fragment implements OnItemSelectedListener, On
 
 		for (int i = 0; i < json.length(); i++)	{
 			HashMap<String, String> map = new HashMap<String, String>();
-			
+
 			try	{
 				JSONObject c = (JSONObject) json.get(i);
 				//Fill map
@@ -233,54 +233,54 @@ public class HomeFragment extends Fragment implements OnItemSelectedListener, On
 					map.put(currentKey, c.getString(currentKey));
 				}
 				resultsList.add(map);
-				
+
 			}
 			catch (JSONException e) {
 				e.printStackTrace();
-				
+
 			}
-			
+
 		};
-		
+
 		MainActivity.setResultsList(resultsList);
 
 	}
-	
+
 	private void agencySearch(double lat, double lng, int radius) {
 		// Setting the URL for the Search by Zip
-				String url_search_agency = "http://www.infinitycodeservices.com/get_agency_by_gps.php";
-				// Building parameters for the search
-				List<NameValuePair> params = new ArrayList<NameValuePair>();
-				params.add(new BasicNameValuePair("lat", Double.toString(lat)));
-				params.add(new BasicNameValuePair("lng", Double.toString(lng)));
-				params.add(new BasicNameValuePair("radius", Integer.toString(radius)));
+		String url_search_agency = "http://www.infinitycodeservices.com/get_agency_by_gps.php";
+		// Building parameters for the search
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("lat", Double.toString(lat)));
+		params.add(new BasicNameValuePair("lng", Double.toString(lng)));
+		params.add(new BasicNameValuePair("radius", Integer.toString(radius)));
 
-				// Getting JSON string from URL
-				JSONArray json = jParser.getJSONFromUrl(url_search_agency, params);
+		// Getting JSON string from URL
+		JSONArray json = jParser.getJSONFromUrl(url_search_agency, params);
 
-				for (int i = 0; i < json.length(); i++)	{
-					HashMap<String, String> map = new HashMap<String, String>();
-					
-					try	{
-						JSONObject c = (JSONObject) json.get(i);
-						//Fill map
-						Iterator iter = c.keys();
-						while(iter.hasNext())	{
-							String currentKey = (String) iter.next();
-							map.put(currentKey, c.getString(currentKey));
-						}
-						resultsList.add(map);
-						
-					}
-					catch (JSONException e) {
-						e.printStackTrace();
-						
-					}
-					
-				};
-				
-				MainActivity.setResultsList(resultsList);
-		
+		for (int i = 0; i < json.length(); i++)	{
+			HashMap<String, String> map = new HashMap<String, String>();
+
+			try	{
+				JSONObject c = (JSONObject) json.get(i);
+				//Fill map
+				Iterator iter = c.keys();
+				while(iter.hasNext())	{
+					String currentKey = (String) iter.next();
+					map.put(currentKey, c.getString(currentKey));
+				}
+				resultsList.add(map);
+
+			}
+			catch (JSONException e) {
+				e.printStackTrace();
+
+			}
+
+		};
+
+		MainActivity.setResultsList(resultsList);
+
 	}
 
 

@@ -8,8 +8,8 @@
     <string name="drawer_close">Slider Menu Closed</string>
     <string name="town_prompt">Choose a Town:</string>
     <string name="search_title">Search</string>
-    <string name="searchbytown">Search</string>
-    <string name="searchbycurrentlocation">Search By Current Location</string>
+    <string name="searchbytown">Search by Town</string>
+    <string name="searchbycurrentlocation">Search For Child Care</string>
     <string name="searchbyzip">Search By Zip</string>
     <string name="searchbylocation"></string>
     <string name="info_about_us"><b> Infinity Code Services </b> is native to Western New York with a shared passion for using technology and innavation to enhance our clients business capabilities as well as showcase IT culture in WNY</string>

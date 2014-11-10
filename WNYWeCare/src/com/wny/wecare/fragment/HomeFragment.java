@@ -44,16 +44,25 @@ public class HomeFragment extends Fragment implements OnItemSelectedListener, On
 	private OnFragmentInteractionListener mListener;
 
 	private Spinner spinner;
+	private Spinner zipSpinner;
 	private Button btnSubmit;
 	private Button zipSubmit;
 	private Button btnLocation;
-
+	
 	private static final String[] list={"Alden", "Amherst", "Angola",
 		"Blasdell", "Boston", "Bowmansville", "Buffalo", "Cheektowaga", "Clarence",
 		"Depew", "Derby", "East Aurora", "Eden", "Elma", "Getzville", "Gowanda",
 		"Grand Island", "Holland", "Irving", "Kenmore", "Lackawanna", "Lake View",
 		"Lancaster", "Lawtons", "North Collins", "Orchard Park", "Snyder", "Springville",
 		"Tonawanda", "West Seneca", "Williamsville"};
+	
+	private static final String[] zipList={"14001", "14004", "14006", "14025", "14026", "14027", 
+		"14031", "14032", "14033", "14043", "14047", "14051", "14052", "14057", "14059", "14068",
+		"14070", "14072", "14075", "14080", "14081", "14085", "14086", "14091", "14111", "14125",
+		"14127", "14141", "14150", "14201", "14202", "14203", "14204", "14206", "14207", "14208",
+		"14209", "14210", "14211", "14212", "14213", "14214", "14215", "14216", "14217", "14218",
+		"14219", "14220", "14221", "14222", "14223", "14224", "14225", "14226", "14227", "14228", "14260"};
+
 
 	// Setup ArrayList from main activity to store results
 	ArrayList<Map<String, String>> resultsList = new ArrayList<Map<String,  String>>();
@@ -75,6 +84,9 @@ public class HomeFragment extends Fragment implements OnItemSelectedListener, On
 
 		spinner =(Spinner)rootView.findViewById(R.id.spinner);
 		spinner.setOnItemSelectedListener(this);
+		
+		zipSpinner =(Spinner)rootView.findViewById(R.id.zipSpinner);
+		zipSpinner.setOnItemSelectedListener(this);
 
 		zipSubmit = (Button) rootView.findViewById(R.id.zip_search);
 		zipSubmit.setOnClickListener(this);
@@ -85,6 +97,10 @@ public class HomeFragment extends Fragment implements OnItemSelectedListener, On
 		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item,list);
 		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		spinner.setAdapter(dataAdapter);
+		
+		ArrayAdapter<String> zipAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item,zipList);
+		zipAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		zipSpinner.setAdapter(zipAdapter);
 
 		return rootView;
 
@@ -103,19 +119,6 @@ public class HomeFragment extends Fragment implements OnItemSelectedListener, On
 		}
 	}
 
-	//add items into spinner dynamically
-	/*public void addItemsOnSpinner2(View v) {
-		addItemsOnSpinner2(v);
-		final List<String> list = new ArrayList<String>();
-		list.add("list 1");
-		list.add("list 2");
-		list.add("list 3");
-		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item,list);
-
-		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-	}*/
-
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()){
@@ -125,8 +128,8 @@ public class HomeFragment extends Fragment implements OnItemSelectedListener, On
 			mListener.onFragmentButton();
 			break;
 		case R.id.zip_search:
-			Editable strZip  = ((EditText) v.findViewById(R.id.txt_zip)).getText();
-			int zip = Integer.parseInt(strZip.toString());
+			String strZip = (String) zipSpinner.getSelectedItem().toString();
+			int zip = Integer.parseInt(strZip);
 			agencySearch(zip);
 			mListener.onFragmentButton();
 			break;
@@ -216,7 +219,7 @@ public class HomeFragment extends Fragment implements OnItemSelectedListener, On
 		String url_search_agency = "http://www.infinitycodeservices.com/get_agency_by_zip.php";
 		// Building parameters for the search
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
-		params.add(new BasicNameValuePair("zip", Integer.toString(zsearch)));
+		params.add(new BasicNameValuePair("Zip", Integer.toString(zsearch)));
 
 		// Getting JSON string from URL
 		JSONArray json = jParser.getJSONFromUrl(url_search_agency, params);

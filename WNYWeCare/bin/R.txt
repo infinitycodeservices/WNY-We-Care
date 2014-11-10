@@ -683,7 +683,6 @@ int id tv_content_about 0x7f0b0084
 int id txtEmail 0x7f0b00c0
 int id txtLabel 0x7f0b00af
 int id txtName 0x7f0b00bf
-int id txt_zip 0x7f0b00b4
 int id up 0x7f0b0040
 int id useLogo 0x7f0b0019
 int id vertical 0x7f0b0038
@@ -693,6 +692,7 @@ int id website_name 0x7f0b0094
 int id withText 0x7f0b001e
 int id wrap_content 0x7f0b0030
 int id zip 0x7f0b00a4
+int id zipSpinner 0x7f0b00b4
 int id zip_search 0x7f0b00b5
 int integer abc_max_action_buttons 0x7f0a0000
 int integer google_play_services_version 0x7f0a0001

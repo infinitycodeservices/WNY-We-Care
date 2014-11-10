@@ -2008,7 +2008,6 @@ containing a value of this type.
         public static final int txtEmail=0x7f0b00c0;
         public static final int txtLabel=0x7f0b00af;
         public static final int txtName=0x7f0b00bf;
-        public static final int txt_zip=0x7f0b00b4;
         public static final int up=0x7f0b0040;
         public static final int useLogo=0x7f0b0019;
         public static final int vertical=0x7f0b0038;
@@ -2018,6 +2017,7 @@ containing a value of this type.
         public static final int withText=0x7f0b001e;
         public static final int wrap_content=0x7f0b0030;
         public static final int zip=0x7f0b00a4;
+        public static final int zipSpinner=0x7f0b00b4;
         public static final int zip_search=0x7f0b00b5;
     }
     public static final class integer {

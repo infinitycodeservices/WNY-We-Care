@@ -90,23 +90,6 @@ public class DetailsFragment extends ListFragment implements OnClickListener {
 
 			}
 		}
-		
-		/*// Test for null values
-		if (detailsArray.get(0).get("AgencyName") == null)	{
-			HashMap<String, String> map = new HashMap<String, String>();
-			map.put("AgencyName", "Not Available");
-			detailsArray.add(map);
-		}
-		if (detailsArray.get(0).get("ContactFn") == null)	{
-			HashMap<String, String> map = new HashMap<String, String>();
-			map.put("ContactFN", "Not");
-			detailsArray.add(map);
-		}
-		if (detailsArray.get(0).get("ContactLn") == null)	{
-			HashMap<String, String> map = new HashMap<String, String>();
-			map.put("ContactLN", "Available");
-			detailsArray.add(map);
-		}*/
 
 		View rootView = inflater.inflate(R.layout.fragment_details, container, false);
 

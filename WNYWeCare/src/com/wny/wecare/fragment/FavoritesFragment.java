@@ -13,6 +13,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.ListFragment;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
@@ -26,44 +28,43 @@ import com.wny.wecare.R;
 import com.wny.wecare.handler.JSONParser;
 
 public class FavoritesFragment extends ListFragment {
-	
-	// Get UserID from sharedprefs
-	String uid = PreferenceManager.getDefaultSharedPreferences(getActivity()).getString("uid", "");
-	
+
 	private ListView mListView;
-	
+
 	// Setting the URL for the Select favorites
 	String url_search_favorites = "http://www.infinitycodeservices.com/get_favorite.php";
-	
+
 	// Create array to store comments
 	ArrayList<Map<String, String>> favoritesArray = new ArrayList<Map<String,  String>>();
-	
+
 	// Create JSON Parser object
 	JSONParser jParser = new JSONParser();
-	
+
 	public FavoritesFragment(){}
-	
+
 	@Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
- 
-        View rootView = inflater.inflate(R.layout.fragment_favorites, container, false);
-        
-        mListView =(ListView)rootView.findViewById(android.R.id.list);
-        
-        userFavorites();
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+
+		View rootView = inflater.inflate(R.layout.fragment_favorites, container, false);
+
+		mListView =(ListView)rootView.findViewById(android.R.id.list);
+
+		userFavorites();
 
 		ListAdapter adapter = new SimpleAdapter(rootView.getContext(), (List<? extends Map<String, ?>>) favoritesArray,
 				R.layout.favorite_item, new String[] { "AgencyID", "AgencyName" }, new int[] { R.id.favid, R.id.favname });
 
 		// updating listview
 		setListAdapter(adapter);
-        
-        return rootView;
-    }
-	
-public void userFavorites()	{
-		
+
+		return rootView;
+	}
+
+	public void userFavorites()	{
+
+		SharedPreferences ui = getActivity().getPreferences(Context.MODE_PRIVATE);
+		String uid = ui.getString("uid", "");
 		// Building parameters for the search
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
 		params.add(new BasicNameValuePair("UserID", uid));
@@ -73,7 +74,7 @@ public void userFavorites()	{
 
 		for (int i = 0; i < json.length(); i++)	{
 			HashMap<String, String> map = new HashMap<String, String>();
-			
+
 			try	{
 				JSONObject c = (JSONObject) json.get(i);
 				//Fill map
@@ -83,14 +84,14 @@ public void userFavorites()	{
 					map.put(currentKey, c.getString(currentKey));
 				}
 				favoritesArray.add(map);
-				
+
 			}
 			catch (JSONException e) {
 				e.printStackTrace();
-				
+
 			}
-			
+
 		};
-		
+
 	}
 }

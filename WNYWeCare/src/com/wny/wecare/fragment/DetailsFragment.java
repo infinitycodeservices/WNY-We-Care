@@ -45,7 +45,7 @@ public class DetailsFragment extends ListFragment implements OnClickListener {
 	//Set AgencyID for comments selection
 	String comments = MainActivity.getDetailsID();
 	
-	String uid = PreferenceManager.getDefaultSharedPreferences(getActivity()).getString("uid", "");;
+	String uid = PreferenceManager.getDefaultSharedPreferences(getActivity()).getString("uid", "");
 	
 	private Button btnComment;
 	
@@ -134,6 +134,8 @@ public class DetailsFragment extends ListFragment implements OnClickListener {
 				detailsArray.get(0).get("MaxAge").toString());
 		agcapty.setText(detailsArray.get(0).get("Capacity").toString());
 		
+		agencyComments();
+		
 		btnComment = (Button) rootView.findViewById(R.id.cmntButton);
 		btnComment.setOnClickListener(this);
 		
@@ -172,7 +174,7 @@ public class DetailsFragment extends ListFragment implements OnClickListener {
 
 	}
 	
-	public void agencyComments(String comments)	{
+	public void agencyComments()	{
 		
 		// Building parameters for the search
 		List<NameValuePair> params = new ArrayList<NameValuePair>();

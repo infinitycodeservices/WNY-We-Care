@@ -11,6 +11,7 @@ import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -62,7 +63,8 @@ public class CustomDialogFragment extends DialogFragment {
 				//message.setText(text.getText());
 
 				// Build parameters to create feedback
-				String uid = PreferenceManager.getDefaultSharedPreferences(getActivity()).getString("uid", "");;
+				SharedPreferences ui = getActivity().getPreferences(Context.MODE_PRIVATE);
+				String uid = ui.getString("uid", "");
 				String comments = MainActivity.getDetailsID();
 				String feedbk = (String) message.getText().toString();
 				String rating = dialog.findViewById(R.id.rating).toString();

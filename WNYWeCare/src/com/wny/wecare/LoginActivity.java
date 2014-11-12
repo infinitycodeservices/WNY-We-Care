@@ -252,7 +252,7 @@ public class LoginActivity extends FragmentActivity implements OnClickListener {
 		 */
 		protected void onPostExecute(String file_url) {
 			// dismiss the dialog once product deleted
-			pDialog.dismiss();
+			//pDialog.dismiss();
 			if (file_url != null) {
 				Toast.makeText(LoginActivity.this, file_url, Toast.LENGTH_LONG).show();
 			}

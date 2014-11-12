@@ -136,8 +136,8 @@ public class DetailsFragment extends ListFragment implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
-		SharedPreferences ui = getActivity().getPreferences(Context.MODE_PRIVATE);
-		String uid = ui.getString("uid", "");
+		//SharedPreferences ui = getActivity().getPreferences(Context.MODE_PRIVATE);
+		String uid = MainActivity.getUserID();
 		switch (v.getId()){
 		case R.id.cmntButton:
 			CustomDialogFragment myDiag = new CustomDialogFragment();

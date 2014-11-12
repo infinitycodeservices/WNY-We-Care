@@ -24,6 +24,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
+import com.wny.wecare.MainActivity;
 import com.wny.wecare.R;
 import com.wny.wecare.handler.JSONParser;
 
@@ -63,8 +64,7 @@ public class FavoritesFragment extends ListFragment {
 
 	public void userFavorites()	{
 
-		SharedPreferences ui = getActivity().getPreferences(Context.MODE_PRIVATE);
-		String uid = ui.getString("uid", "");
+		String uid = MainActivity.getUserID();
 		// Building parameters for the search
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
 		params.add(new BasicNameValuePair("UserID", uid));

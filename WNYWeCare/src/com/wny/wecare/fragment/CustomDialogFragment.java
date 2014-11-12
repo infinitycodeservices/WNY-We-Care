@@ -63,8 +63,7 @@ public class CustomDialogFragment extends DialogFragment {
 				//message.setText(text.getText());
 
 				// Build parameters to create feedback
-				SharedPreferences ui = getActivity().getPreferences(Context.MODE_PRIVATE);
-				String uid = ui.getString("uid", "");
+				String uid = MainActivity.getUserID();
 				String comments = MainActivity.getDetailsID();
 				String feedbk = (String) message.getText().toString();
 				String rating = dialog.findViewById(R.id.rating).toString();

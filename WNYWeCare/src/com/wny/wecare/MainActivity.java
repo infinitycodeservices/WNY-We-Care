@@ -45,6 +45,7 @@ public class MainActivity extends Activity implements OnFragmentInteractionListe
 	protected static ArrayList<Map<String, String>> resultsList = null;
 	
 	protected static String detailsID;
+	protected static String userID;
 
 	private DrawerLayout mDrawerLayout;
 	private ListView mDrawerList;
@@ -286,6 +287,14 @@ public class MainActivity extends Activity implements OnFragmentInteractionListe
 	
 	public static void setDetailsID(String detid)	{
 		MainActivity.detailsID = detid;
+	}
+	
+	public static String getUserID()	{
+		return userID;
+	}
+	
+	public static void setUserID(String usrid)	{
+		MainActivity.userID = usrid;
 	}
 
 	@Override

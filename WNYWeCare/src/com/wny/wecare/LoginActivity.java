@@ -94,23 +94,14 @@ public class LoginActivity extends FragmentActivity implements OnClickListener {
 				String email=inputEmail.getText().toString();
 				if(checkEmail(email)) {
 					Toast.makeText(LoginActivity.this,"Valid Email Addresss", Toast.LENGTH_SHORT).show();
-
-					/******* Create SharedPreferences *******/
-					SharedPreferences pref = getApplicationContext().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
-					SharedPreferences.Editor editor = pref.edit();
-					/**************** Storing data as KEY/VALUE pair *******************/
-					editor.putString("uid", strUid);
-					editor.putString("email", inputEmail.getText().toString());
-					// Save the changes in SharedPreferences
-					editor.commit();
-					/**************** Get SharedPreferences data *******************/
-					pref.getString("email", null);
+					
+					new CreateNewUser().execute();
 
 					startActivity(new Intent(LoginActivity.this, MainActivity.class));
 					finish();
 
 					// creating new user in background thread 
-					new CreateNewUser().execute();
+					
 				}       	
 				else
 					Toast.makeText(LoginActivity.this,"Invalid Email Addresss", Toast.LENGTH_SHORT).show();
@@ -234,7 +225,22 @@ public class LoginActivity extends FragmentActivity implements OnClickListener {
 				}
 
 			};
-
+			
+			strUid = emailList.get(0).get("UserID");
+			MainActivity.setUserID(strUid);
+			
+			/******* Create SharedPreferences *******/
+			SharedPreferences pref = getApplicationContext().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
+			SharedPreferences.Editor editor = pref.edit();
+			/**************** Storing data as KEY/VALUE pair *******************/
+			editor.putString("uid", strUid);
+			editor.putString("email", inputEmail.getText().toString());
+			// Save the changes in SharedPreferences
+			editor.commit();
+			/**************** Get SharedPreferences data *******************/
+			pref.getString("email", null);
+			
+			
 
 			return null;
 
